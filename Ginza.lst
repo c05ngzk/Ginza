@@ -1,0 +1,2265 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.83 build 10920 
+                                                                                               Sun Nov 16 18:35:40 2014
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 10920"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F886
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           # 10 "D:\Ginza\Ginza.c"
+    43                           	psect config,class=CONFIG,delta=2 ;#
+    44                           # 10 "D:\Ginza\Ginza.c"
+    45  2007  2BC4               	dw 0x2BC4 ;#
+    46                           # 11 "D:\Ginza\Ginza.c"
+    47                           	psect config,class=CONFIG,delta=2 ;#
+    48                           # 11 "D:\Ginza\Ginza.c"
+    49  2008  3FFF               	dw 0x3FFF ;#
+    50                           	FNROOT	_main
+    51                           	FNCALL	intlevel1,_elapse
+    52                           	global	intlevel1
+    53                           	FNROOT	intlevel1
+    54                           	global	_ad_0
+    55                           	global	_ad_1
+    56                           	global	_ad_2
+    57                           	global	_ad_rtn
+    58                           	global	_chime_time
+    59                           	global	_quotient
+    60                           	global	_b_0
+    61                           	global	_b_1
+    62                           	global	_b_2
+    63                           	global	_b_cur
+    64                           	global	_key_count
+    65                           	global	_time
+    66                           	global	_remainder
+    67                           	global	_chime_type
+    68                           	global	_direction
+    69                           	global	_door_on
+    70                           	global	_led_on
+    71                           	global	_b_ok
+    72                           psect	nvBANK0,class=BANK0,space=1
+    73                           global __pnvBANK0
+    74  004E                     __pnvBANK0:
+    75  004E                     _b_ok:
+    76  004E                            ds      1
+    77                           
+    78                           	global	_pr2_data
+    79  004F                     _pr2_data:
+    80  004F                            ds      1
+    81                           
+    82                           	global	_sta_num
+    83  0050                     _sta_num:
+    84  0050                            ds      1
+    85                           
+    86                           	global	_timercount
+    87  0051                     _timercount:
+    88  0051                            ds      1
+    89                           
+    90                           	global	_at_sta
+    91                           psect	bitnvCOMMON,class=COMMON,bit,space=1
+    92                           global __pbitnvCOMMON
+    93  03D8                     __pbitnvCOMMON:
+    94  03D8                     _at_sta:
+    95  03D8                            ds      1
+    96                           
+    97                           	global	_initialize
+    98  03D9                     _initialize:
+    99  03D9                            ds      1
+   100                           
+   101                           	global	_ADCON0
+   102  001F                     _ADCON0	set	31
+   103                           	global	_ADRESH
+   104  001E                     _ADRESH	set	30
+   105                           	global	_CCP1CON
+   106  0017                     _CCP1CON	set	23
+   107                           	global	_CCPR1L
+   108  0015                     _CCPR1L	set	21
+   109                           	global	_PORTA
+   110  0005                     _PORTA	set	5
+   111                           	global	_PORTB
+   112  0006                     _PORTB	set	6
+   113                           	global	_PORTC
+   114  0007                     _PORTC	set	7
+   115                           	global	_T2CON
+   116  0012                     _T2CON	set	18
+   117                           	global	_TMR0
+   118  0001                     _TMR0	set	1
+   119                           	global	_CARRY
+   120  0018                     _CARRY	set	24
+   121                           	global	_GIE
+   122  005F                     _GIE	set	95
+   123                           	global	_PEIE
+   124  005E                     _PEIE	set	94
+   125                           	global	_RA5
+   126  002D                     _RA5	set	45
+   127                           	global	_RB6
+   128  0036                     _RB6	set	54
+   129                           	global	_RB7
+   130  0037                     _RB7	set	55
+   131                           	global	_RC0
+   132  0038                     _RC0	set	56
+   133                           	global	_RC3
+   134  003B                     _RC3	set	59
+   135                           	global	_RC4
+   136  003C                     _RC4	set	60
+   137                           	global	_RC5
+   138  003D                     _RC5	set	61
+   139                           	global	_T0IE
+   140  005D                     _T0IE	set	93
+   141                           	global	_T0IF
+   142  005A                     _T0IF	set	90
+   143                           	global	_T1CKPS0
+   144  0084                     _T1CKPS0	set	132
+   145                           	global	_T1CKPS1
+   146  0085                     _T1CKPS1	set	133
+   147                           	global	_TMR1IF
+   148  0060                     _TMR1IF	set	96
+   149                           	global	_TMR1ON
+   150  0080                     _TMR1ON	set	128
+   151                           	global	_ADCON1
+   152  009F                     _ADCON1	set	159
+   153                           	global	_OPTION_REG
+   154  0081                     _OPTION_REG	set	129
+   155                           	global	_OSCCON
+   156  008F                     _OSCCON	set	143
+   157                           	global	_PR2
+   158  0092                     _PR2	set	146
+   159                           	global	_TRISA
+   160  0085                     _TRISA	set	133
+   161                           	global	_TRISB
+   162  0086                     _TRISB	set	134
+   163                           	global	_TRISC
+   164  0087                     _TRISC	set	135
+   165                           	global	_WPUB
+   166  0095                     _WPUB	set	149
+   167                           	global	_TMR1IE
+   168  0460                     _TMR1IE	set	1120
+   169                           	global	_EEADR
+   170  010D                     _EEADR	set	269
+   171                           	global	_EEDATA
+   172  010C                     _EEDATA	set	268
+   173                           	global	_ANSEL
+   174  0188                     _ANSEL	set	392
+   175                           	global	_ANSELH
+   176  0189                     _ANSELH	set	393
+   177                           	global	_EECON1
+   178  018C                     _EECON1	set	396
+   179                           	global	_EECON2
+   180  018D                     _EECON2	set	397
+   181                           	global	_RD
+   182  0C60                     _RD	set	3168
+   183                           	global	_WR
+   184  0C61                     _WR	set	3169
+   185                           	global	_WREN
+   186  0C62                     _WREN	set	3170
+   187                           	file	"Ginza.as"
+   188                           	line	#
+   189                           psect cinit,class=CODE,delta=2
+   190                           global start_initialization
+   191  02FC                     start_initialization:
+   192                           
+   193                           psect	bitbssCOMMON,class=COMMON,bit,space=1
+   194                           global __pbitbssCOMMON
+   195  03D0                     __pbitbssCOMMON:
+   196  03D0                     _chime_type:
+   197  03D0                            ds      1
+   198                           
+   199  03D1                     _direction:
+   200  03D1                            ds      1
+   201                           
+   202  03D2                     _door_on:
+   203  03D2                            ds      1
+   204                           
+   205  03D3                     _led_on:
+   206  03D3                            ds      1
+   207                           
+   208                           psect	bssCOMMON,class=COMMON,space=1
+   209                           global __pbssCOMMON
+   210  007C                     __pbssCOMMON:
+   211  007C                     _remainder:
+   212  007C                            ds      2
+   213                           
+   214                           psect	bssBANK0,class=BANK0,space=1
+   215                           global __pbssBANK0
+   216  0020                     __pbssBANK0:
+   217  0020                     _ad_0:
+   218  0020                            ds      5
+   219                           
+   220  0025                     _ad_1:
+   221  0025                            ds      5
+   222                           
+   223  002A                     _ad_2:
+   224  002A                            ds      5
+   225                           
+   226  002F                     _ad_rtn:
+   227  002F                            ds      5
+   228                           
+   229  0034                     _chime_time:
+   230  0034                            ds      2
+   231                           
+   232  0036                     _quotient:
+   233  0036                            ds      2
+   234                           
+   235  0038                     _b_0:
+   236  0038                            ds      1
+   237                           
+   238  0039                     _b_1:
+   239  0039                            ds      1
+   240                           
+   241  003A                     _b_2:
+   242  003A                            ds      1
+   243                           
+   244  003B                     _b_cur:
+   245  003B                            ds      1
+   246                           
+   247  003C                     _key_count:
+   248  003C                            ds      1
+   249                           
+   250  003D                     _time:
+   251  003D                            ds      1
+   252                           
+   253                           psect clrtext,class=CODE,delta=2
+   254                           global clear_ram
+   255                           ;	Called with FSR containing the base address, and
+   256                           ;	W with the last address+1
+   257  030C                     clear_ram:
+   258  030C  0064               	clrwdt			;clear the watchdog before getting into this loop
+   259  030D                     clrloop:
+   260  030D  0180               	clrf	indf		;clear RAM location pointed to by FSR
+   261  030E  0A84               	incf	fsr,f		;increment pointer
+   262  030F  0604               	xorwf	fsr,w		;XOR with final address
+   263  0310  1903               	btfsc	status,2	;have we reached the end yet?
+   264  0311  3400               	retlw	0		;all done for this memory range, return
+   265  0312  0604               	xorwf	fsr,w		;XOR again to restore value
+   266  0313  2B0D               	goto	clrloop		;do the next byte
+   267                           
+   268                           ; Clear objects allocated to BITCOMMON
+   269                           psect cinit,class=CODE,delta=2
+   270  02FC  01FA               	clrf	((__pbitbssCOMMON/8)+0)&07Fh
+   271                           ; Clear objects allocated to COMMON
+   272                           psect cinit,class=CODE,delta=2
+   273  02FD  01FC               	clrf	((__pbssCOMMON)+0)&07Fh
+   274  02FE  01FD               	clrf	((__pbssCOMMON)+1)&07Fh
+   275                           ; Clear objects allocated to BANK0
+   276                           psect cinit,class=CODE,delta=2
+   277  02FF  1383               	bcf	status, 7	;select IRP bank0
+   278  0300  3020               	movlw	low(__pbssBANK0)
+   279  0301  0084               	movwf	fsr
+   280  0302  303E               	movlw	low((__pbssBANK0)+01Eh)
+   281  0303  120A  118A  230C   	fcall	clear_ram
+              120A  118A         
+   282                           psect cinit,class=CODE,delta=2
+   283                           global end_of_initialization
+   284                           
+   285                           ;End of C runtime variable initialization code
+   286                           
+   287  0308                     end_of_initialization:
+   288  0308  0183               clrf status
+   289  0309  120A  118A  29A9   ljmp _main	;jump to C main() function
+   290                           psect	cstackCOMMON,class=COMMON,space=1
+   291                           global __pcstackCOMMON
+   292  0070                     __pcstackCOMMON:
+   293                           	global	?_main
+   294  0070                     ?_main:	; 0 bytes @ 0x0
+   295                           	global	?_elapse
+   296  0070                     ?_elapse:	; 0 bytes @ 0x0
+   297                           	global	??_elapse
+   298  0070                     ??_elapse:	; 0 bytes @ 0x0
+   299  0070                     	ds	10
+   300                           psect	cstackBANK0,class=BANK0,space=1
+   301                           global __pcstackBANK0
+   302  003E                     __pcstackBANK0:
+   303                           	global	_elapse$1730
+   304  003E                     _elapse$1730:	; 2 bytes @ 0x0
+   305  003E                     	ds	2
+   306                           	global	_elapse$1731
+   307  0040                     _elapse$1731:	; 2 bytes @ 0x2
+   308  0040                     	ds	2
+   309                           	global	_elapse$1732
+   310  0042                     _elapse$1732:	; 2 bytes @ 0x4
+   311  0042                     	ds	2
+   312                           	global	_elapse$1733
+   313  0044                     _elapse$1733:	; 2 bytes @ 0x6
+   314  0044                     	ds	2
+   315                           	global	_elapse$1734
+   316  0046                     _elapse$1734:	; 2 bytes @ 0x8
+   317  0046                     	ds	2
+   318                           	global	_elapse$1728
+   319  0048                     _elapse$1728:	; 1 bytes @ 0xA
+   320  0048                     	ds	1
+   321                           	global	elapse@i
+   322  0049                     elapse@i:	; 1 bytes @ 0xB
+   323  0049                     	ds	1
+   324                           	global	??_main
+   325  004A                     ??_main:	; 0 bytes @ 0xC
+   326  004A                     	ds	2
+   327                           	global	main@i
+   328  004C                     main@i:	; 1 bytes @ 0xE
+   329  004C                     	ds	1
+   330                           	global	main@i_1725
+   331  004D                     main@i_1725:	; 1 bytes @ 0xF
+   332  004D                     	ds	1
+   333 ;;Data sizes: Strings 0, constant 0, data 0, bss 32, persistent 4 stack 0
+   334 ;;Auto spaces:   Size  Autos    Used
+   335 ;; COMMON          14     10      14
+   336 ;; BANK0           80     16      50
+   337 ;; BANK1           80      0       0
+   338 ;; BANK3           96      0       0
+   339 ;; BANK2           96      0       0
+   340                           
+   341 ;;
+   342 ;; Pointer list with targets:
+   343                           
+   344                           
+   345                           
+   346 ;;
+   347 ;; Critical Paths under _main in COMMON
+   348 ;;
+   349 ;;   None.
+   350 ;;
+   351 ;; Critical Paths under _elapse in COMMON
+   352 ;;
+   353 ;;   None.
+   354 ;;
+   355 ;; Critical Paths under _main in BANK0
+   356 ;;
+   357 ;;   None.
+   358 ;;
+   359 ;; Critical Paths under _elapse in BANK0
+   360 ;;
+   361 ;;   None.
+   362 ;;
+   363 ;; Critical Paths under _main in BANK1
+   364 ;;
+   365 ;;   None.
+   366 ;;
+   367 ;; Critical Paths under _elapse in BANK1
+   368 ;;
+   369 ;;   None.
+   370 ;;
+   371 ;; Critical Paths under _main in BANK3
+   372 ;;
+   373 ;;   None.
+   374 ;;
+   375 ;; Critical Paths under _elapse in BANK3
+   376 ;;
+   377 ;;   None.
+   378 ;;
+   379 ;; Critical Paths under _main in BANK2
+   380 ;;
+   381 ;;   None.
+   382 ;;
+   383 ;; Critical Paths under _elapse in BANK2
+   384 ;;
+   385 ;;   None.
+   386                           
+   387 ;;
+   388 ;;Main: autosize = 0, tempsize = 2, incstack = 0, save=0
+   389 ;;
+   390                           
+   391 ;;
+   392 ;;Call Graph Tables:
+   393 ;;
+   394 ;; ---------------------------------------------------------------------------------
+   395 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   396 ;; ---------------------------------------------------------------------------------
+   397 ;; (0) _main                                                 4     4      0     202
+   398 ;;                                             12 BANK0      4     4      0
+   399 ;; ---------------------------------------------------------------------------------
+   400 ;; Estimated maximum stack depth 0
+   401 ;; ---------------------------------------------------------------------------------
+   402 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   403 ;; ---------------------------------------------------------------------------------
+   404 ;; (1) _elapse                                              22    22      0     234
+   405 ;;                                              0 COMMON    10    10      0
+   406 ;;                                              0 BANK0     12    12      0
+   407 ;; ---------------------------------------------------------------------------------
+   408 ;; Estimated maximum stack depth 1
+   409 ;; ---------------------------------------------------------------------------------
+   410                           
+   411 ;; Call Graph Graphs:
+   412                           
+   413 ;; _main (ROOT)
+   414 ;;
+   415 ;; _elapse (ROOT)
+   416 ;;
+   417                           
+   418 ;; Address spaces:
+   419                           
+   420 ;;Name               Size   Autos  Total    Cost      Usage
+   421 ;;BITCOMMON            E      0       2       0       14.3%
+   422 ;;EEDATA             100      0       0       0        0.0%
+   423 ;;NULL                 0      0       0       0        0.0%
+   424 ;;CODE                 0      0       0       0        0.0%
+   425 ;;COMMON               E      A       E       1      100.0%
+   426 ;;BITSFR0              0      0       0       1        0.0%
+   427 ;;SFR0                 0      0       0       1        0.0%
+   428 ;;BITSFR1              0      0       0       2        0.0%
+   429 ;;SFR1                 0      0       0       2        0.0%
+   430 ;;STACK                0      0       0       2        0.0%
+   431 ;;ABS                  0      0      40       3        0.0%
+   432 ;;BITBANK0            50      0       0       4        0.0%
+   433 ;;BITSFR3              0      0       0       4        0.0%
+   434 ;;SFR3                 0      0       0       4        0.0%
+   435 ;;BANK0               50     10      32       5       62.5%
+   436 ;;BITSFR2              0      0       0       5        0.0%
+   437 ;;SFR2                 0      0       0       5        0.0%
+   438 ;;BITBANK1            50      0       0       6        0.0%
+   439 ;;BANK1               50      0       0       7        0.0%
+   440 ;;BITBANK3            60      0       0       8        0.0%
+   441 ;;BANK3               60      0       0       9        0.0%
+   442 ;;BITBANK2            60      0       0      10        0.0%
+   443 ;;BANK2               60      0       0      11        0.0%
+   444 ;;DATA                 0      0      40      12        0.0%
+   445                           
+   446                           	global	_main
+   447                           psect	maintext,global,class=CODE,delta=2
+   448                           global __pmaintext
+   449  01A9                     __pmaintext:
+   450                           
+   451 ;; *************** function _main *****************
+   452 ;; Defined at:
+   453 ;;		line 52 in file "D:\Ginza\Ginza.c"
+   454 ;; Parameters:    Size  Location     Type
+   455 ;;		None
+   456 ;; Auto vars:     Size  Location     Type
+   457 ;;  i               1   15[BANK0 ] unsigned char 
+   458 ;;  i               1   14[BANK0 ] unsigned char 
+   459 ;; Return value:  Size  Location     Type
+   460 ;;		None               void
+   461 ;; Registers used:
+   462 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+   463 ;; Tracked objects:
+   464 ;;		On entry : 17F/0
+   465 ;;		On exit  : 0/0
+   466 ;;		Unchanged: 0/0
+   467 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   468 ;;      Params:         0       0       0       0       0
+   469 ;;      Locals:         0       2       0       0       0
+   470 ;;      Temps:          0       2       0       0       0
+   471 ;;      Totals:         0       4       0       0       0
+   472 ;;Total ram usage:        4 bytes
+   473 ;; Hardware stack levels required when called:    1
+   474 ;; This function calls:
+   475 ;;		Nothing
+   476 ;; This function is called by:
+   477 ;;		Startup code after reset
+   478 ;; This function uses a non-reentrant model
+   479 ;;
+   480                           psect	maintext
+   481                           	file	"D:\Ginza\Ginza.c"
+   482                           	line	52
+   483                           	global	__size_of_main
+   484  0153                     	__size_of_main	equ	__end_of_main-_main
+   485                           	
+   486  01A9                     _main:	
+   487                           	opt	stack 7
+   488                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0]
+   489                           	line	53
+   490                           	
+   491  01A9                     l3706:	
+   492                           ;Ginza.c: 53: OSCCON=0x61;
+   493  01A9  3061               	movlw	(061h)
+   494  01AA  1683               	bsf	status, 5	;RP0=1, select bank1
+   495  01AB  1303               	bcf	status, 6	;RP1=0, select bank1
+   496  01AC  008F               	movwf	(143)^080h	;volatile
+   497                           	line	54
+   498                           ;Ginza.c: 54: OPTION_REG=0b0101;
+   499  01AD  3005               	movlw	(05h)
+   500  01AE  0081               	movwf	(129)^080h	;volatile
+   501                           	line	55
+   502                           ;Ginza.c: 55: WPUB=0b00111111;
+   503  01AF  303F               	movlw	(03Fh)
+   504  01B0  0095               	movwf	(149)^080h	;volatile
+   505                           	line	56
+   506                           	
+   507  01B1                     l3708:	
+   508                           ;Ginza.c: 56: TRISA=0;
+   509  01B1  0185               	clrf	(133)^080h	;volatile
+   510                           	line	57
+   511                           	
+   512  01B2                     l3710:	
+   513                           ;Ginza.c: 57: TRISB=0b00111111;
+   514  01B2  303F               	movlw	(03Fh)
+   515  01B3  0086               	movwf	(134)^080h	;volatile
+   516                           	line	58
+   517                           ;Ginza.c: 58: TRISC=0;
+   518  01B4  0187               	clrf	(135)^080h	;volatile
+   519                           	line	59
+   520                           ;Ginza.c: 59: PORTA=0;
+   521  01B5  1283               	bcf	status, 5	;RP0=0, select bank0
+   522  01B6  1303               	bcf	status, 6	;RP1=0, select bank0
+   523  01B7  0185               	clrf	(5)	;volatile
+   524                           	line	60
+   525                           ;Ginza.c: 60: PORTB=0;
+   526  01B8  0186               	clrf	(6)	;volatile
+   527                           	line	61
+   528                           ;Ginza.c: 61: PORTC=0;
+   529  01B9  0187               	clrf	(7)	;volatile
+   530                           	line	62
+   531                           ;Ginza.c: 62: ADCON1=0;
+   532  01BA  1683               	bsf	status, 5	;RP0=1, select bank1
+   533  01BB  1303               	bcf	status, 6	;RP1=0, select bank1
+   534  01BC  019F               	clrf	(159)^080h	;volatile
+   535                           	line	63
+   536                           ;Ginza.c: 63: ANSELH=0;
+   537  01BD  1683               	bsf	status, 5	;RP0=1, select bank3
+   538  01BE  1703               	bsf	status, 6	;RP1=1, select bank3
+   539  01BF  0189               	clrf	(393)^0180h	;volatile
+   540                           	line	64
+   541                           ;Ginza.c: 64: ANSEL=0;
+   542  01C0  0188               	clrf	(392)^0180h	;volatile
+   543                           	line	66
+   544                           	
+   545  01C1                     l3712:	
+   546                           ;Ginza.c: 66: RC5=1;
+   547  01C1  1283               	bcf	status, 5	;RP0=0, select bank0
+   548  01C2  1303               	bcf	status, 6	;RP1=0, select bank0
+   549  01C3  1687               	bsf	(61/8),(61)&7
+   550                           	line	67
+   551                           	
+   552  01C4                     l3714:	
+   553                           ;Ginza.c: 67: RC4=1;
+   554  01C4  1607               	bsf	(60/8),(60)&7
+   555                           	line	68
+   556                           	
+   557  01C5                     l3716:	
+   558                           ;Ginza.c: 68: RC0=1;
+   559  01C5  1407               	bsf	(56/8),(56)&7
+   560                           	line	69
+   561                           	
+   562  01C6                     l3718:	
+   563                           ;Ginza.c: 69: RC3=0;
+   564  01C6  1187               	bcf	(59/8),(59)&7
+   565                           	line	70
+   566                           	
+   567  01C7                     l3720:	
+   568                           ;Ginza.c: 70: door_on=0;
+   569  01C7  117A               	bcf	(_door_on/8),(_door_on)&7
+   570                           	line	72
+   571                           	
+   572  01C8                     l3722:	
+   573                           ;Ginza.c: 72: b_0=0;
+   574  01C8  01B8               	clrf	(_b_0)
+   575                           	line	73
+   576                           	
+   577  01C9                     l3724:	
+   578                           ;Ginza.c: 73: b_1=0;
+   579  01C9  01B9               	clrf	(_b_1)
+   580                           	line	74
+   581                           	
+   582  01CA                     l3726:	
+   583                           ;Ginza.c: 74: b_2=0;
+   584  01CA  01BA               	clrf	(_b_2)
+   585                           	line	75
+   586                           	
+   587  01CB                     l3728:	
+   588                           ;Ginza.c: 75: b_cur=0;
+   589  01CB  01BB               	clrf	(_b_cur)
+   590                           	line	76
+   591                           	
+   592  01CC                     l3730:	
+   593                           ;Ginza.c: 76: b_ok=255;
+   594  01CC  30FF               	movlw	(0FFh)
+   595  01CD  00CA               	movwf	(??_main+0)+0
+   596  01CE  084A               	movf	(??_main+0)+0,w
+   597  01CF  00CE               	movwf	(_b_ok)
+   598                           	line	78
+   599                           	
+   600  01D0                     l3732:	
+   601                           ;Ginza.c: 78: CCP1CON=0x0c;
+   602  01D0  300C               	movlw	(0Ch)
+   603  01D1  0097               	movwf	(23)	;volatile
+   604                           	line	79
+   605                           	
+   606  01D2                     l3734:	
+   607                           ;Ginza.c: 79: PR2=99;
+   608  01D2  3063               	movlw	(063h)
+   609  01D3  1683               	bsf	status, 5	;RP0=1, select bank1
+   610  01D4  1303               	bcf	status, 6	;RP1=0, select bank1
+   611  01D5  0092               	movwf	(146)^080h	;volatile
+   612                           	line	80
+   613                           	
+   614  01D6                     l3736:	
+   615                           ;Ginza.c: 80: T2CON|=0x06;
+   616  01D6  3006               	movlw	(06h)
+   617  01D7  1283               	bcf	status, 5	;RP0=0, select bank0
+   618  01D8  1303               	bcf	status, 6	;RP1=0, select bank0
+   619  01D9  00CA               	movwf	(??_main+0)+0
+   620  01DA  084A               	movf	(??_main+0)+0,w
+   621  01DB  0492               	iorwf	(18),f	;volatile
+   622                           	line	81
+   623                           	
+   624  01DC                     l3738:	
+   625                           ;Ginza.c: 81: CCPR1L=0;
+   626  01DC  0195               	clrf	(21)	;volatile
+   627                           	line	83
+   628                           	
+   629  01DD                     l3740:	
+   630                           ;Ginza.c: 83: pr2_data=99;
+   631  01DD  3063               	movlw	(063h)
+   632  01DE  00CA               	movwf	(??_main+0)+0
+   633  01DF  084A               	movf	(??_main+0)+0,w
+   634  01E0  00CF               	movwf	(_pr2_data)
+   635                           	line	84
+   636                           	
+   637  01E1                     l3742:	
+   638                           ;Ginza.c: 84: time=0;
+   639  01E1  01BD               	clrf	(_time)
+   640                           	line	86
+   641                           	
+   642  01E2                     l3744:	
+   643                           ;Ginza.c: 86: OPTION_REG=0b0101;
+   644  01E2  3005               	movlw	(05h)
+   645  01E3  1683               	bsf	status, 5	;RP0=1, select bank1
+   646  01E4  1303               	bcf	status, 6	;RP1=0, select bank1
+   647  01E5  0081               	movwf	(129)^080h	;volatile
+   648                           	line	87
+   649                           	
+   650  01E6                     l3746:	
+   651                           ;Ginza.c: 87: TMR0=131;
+   652  01E6  3083               	movlw	(083h)
+   653  01E7  1283               	bcf	status, 5	;RP0=0, select bank0
+   654  01E8  1303               	bcf	status, 6	;RP1=0, select bank0
+   655  01E9  0081               	movwf	(1)	;volatile
+   656                           	line	88
+   657                           	
+   658  01EA                     l3748:	
+   659                           ;Ginza.c: 88: T0IE=1;
+   660  01EA  168B               	bsf	(93/8),(93)&7
+   661                           	line	90
+   662                           	
+   663  01EB                     l3750:	
+   664                           ;Ginza.c: 90: T1CKPS1=1;
+   665  01EB  1690               	bsf	(133/8),(133)&7
+   666                           	line	91
+   667                           	
+   668  01EC                     l3752:	
+   669                           ;Ginza.c: 91: T1CKPS0=1;
+   670  01EC  1610               	bsf	(132/8),(132)&7
+   671                           	line	92
+   672                           	
+   673  01ED                     l3754:	
+   674                           ;Ginza.c: 92: TMR1ON=1;
+   675  01ED  1410               	bsf	(128/8),(128)&7
+   676                           	line	93
+   677                           	
+   678  01EE                     l3756:	
+   679                           ;Ginza.c: 93: TMR1IE=1;
+   680  01EE  1683               	bsf	status, 5	;RP0=1, select bank1
+   681  01EF  1303               	bcf	status, 6	;RP1=0, select bank1
+   682  01F0  140C               	bsf	(1120/8)^080h,(1120)&7
+   683                           	line	94
+   684                           	
+   685  01F1                     l3758:	
+   686                           ;Ginza.c: 94: PEIE=1;
+   687  01F1  170B               	bsf	(94/8),(94)&7
+   688                           	line	95
+   689                           	
+   690  01F2                     l3760:	
+   691                           ;Ginza.c: 95: GIE=1;
+   692  01F2  178B               	bsf	(95/8),(95)&7
+   693                           	line	97
+   694                           	
+   695  01F3                     l3762:	
+   696                           ;Ginza.c: 97: initialize=1;
+   697  01F3  14FB               	bsf	(_initialize/8),(_initialize)&7
+   698                           	line	99
+   699                           	
+   700  01F4                     l3764:	
+   701                           ;Ginza.c: 99: timercount=2;
+   702  01F4  3002               	movlw	(02h)
+   703  01F5  1283               	bcf	status, 5	;RP0=0, select bank0
+   704  01F6  1303               	bcf	status, 6	;RP1=0, select bank0
+   705  01F7  00CA               	movwf	(??_main+0)+0
+   706  01F8  084A               	movf	(??_main+0)+0,w
+   707  01F9  00D1               	movwf	(_timercount)
+   708                           	line	101
+   709                           	
+   710  01FA                     l3766:	
+   711                           ;Ginza.c: 101: direction=0;
+   712  01FA  10FA               	bcf	(_direction/8),(_direction)&7
+   713                           	line	102
+   714                           ;Ginza.c: 102: sta_num=1;
+   715  01FB  01D0               	clrf	(_sta_num)
+   716  01FC  1403               	bsf	status,0
+   717  01FD  0DD0               	rlf	(_sta_num),f
+   718                           	line	103
+   719                           	
+   720  01FE                     l3768:	
+   721                           ;Ginza.c: 103: at_sta=1;
+   722  01FE  147B               	bsf	(_at_sta/8),(_at_sta)&7
+   723                           	line	105
+   724                           	
+   725  01FF                     l3770:	
+   726                           ;Ginza.c: 105: RB6=0;
+   727  01FF  1306               	bcf	(54/8),(54)&7
+   728                           	line	106
+   729                           	
+   730  0200                     l3772:	
+   731                           ;Ginza.c: 106: for(unsigned char i=0;i<41;i++){
+   732  0200  01CC               	clrf	(main@i)
+   733                           	
+   734  0201                     l3774:	
+   735  0201  3029               	movlw	(029h)
+   736  0202  024C               	subwf	(main@i),w
+   737  0203  1C03               	skipc
+   738  0204  2A06               	goto	u3331
+   739  0205  2A07               	goto	u3330
+   740  0206                     u3331:
+   741  0206  2A09               	goto	l1015
+   742  0207                     u3330:
+   743  0207  2A15               	goto	l1016
+   744                           	
+   745  0208                     l3776:	
+   746  0208  2A15               	goto	l1016
+   747                           	
+   748  0209                     l1015:	
+   749                           	line	107
+   750                           ;Ginza.c: 107: RB7=1;
+   751  0209  1786               	bsf	(55/8),(55)&7
+   752                           	line	108
+   753                           ;Ginza.c: 108: RB7=0;
+   754  020A  1386               	bcf	(55/8),(55)&7
+   755                           	line	106
+   756                           	
+   757  020B                     l3778:	
+   758  020B  3001               	movlw	(01h)
+   759  020C  00CA               	movwf	(??_main+0)+0
+   760  020D  084A               	movf	(??_main+0)+0,w
+   761  020E  07CC               	addwf	(main@i),f
+   762                           	
+   763  020F                     l3780:	
+   764  020F  3029               	movlw	(029h)
+   765  0210  024C               	subwf	(main@i),w
+   766  0211  1C03               	skipc
+   767  0212  2A14               	goto	u3341
+   768  0213  2A15               	goto	u3340
+   769  0214                     u3341:
+   770  0214  2A09               	goto	l1015
+   771  0215                     u3340:
+   772                           	
+   773  0215                     l1016:	
+   774                           	line	110
+   775                           ;Ginza.c: 109: }
+   776                           ;Ginza.c: 110: RC5=0;
+   777  0215  1287               	bcf	(61/8),(61)&7
+   778                           	line	111
+   779                           ;Ginza.c: 111: RC4=0;
+   780  0216  1207               	bcf	(60/8),(60)&7
+   781                           	line	113
+   782                           ;Ginza.c: 113: chime_type=0;
+   783  0217  107A               	bcf	(_chime_type/8),(_chime_type)&7
+   784                           	line	114
+   785                           	
+   786  0218                     l3782:	
+   787                           ;Ginza.c: 114: chime_time=277;
+   788  0218  3015               	movlw	low(0115h)
+   789  0219  00B4               	movwf	(_chime_time)
+   790  021A  3001               	movlw	high(0115h)
+   791  021B  00B5               	movwf	((_chime_time))+1
+   792  021C  2A1D               	goto	l3784
+   793                           	line	116
+   794                           ;Ginza.c: 116: while(1){
+   795                           	
+   796  021D                     l1017:	
+   797                           	line	117
+   798                           	
+   799  021D                     l3784:	
+   800                           ;Ginza.c: 117: for(unsigned char i=0;i<6;i++){
+   801  021D  1283               	bcf	status, 5	;RP0=0, select bank0
+   802  021E  1303               	bcf	status, 6	;RP1=0, select bank0
+   803  021F  01CD               	clrf	(main@i_1725)
+   804  0220  3006               	movlw	(06h)
+   805  0221  024D               	subwf	(main@i_1725),w
+   806  0222  1C03               	skipc
+   807  0223  2A25               	goto	u3351
+   808  0224  2A26               	goto	u3350
+   809  0225                     u3351:
+   810  0225  2A28               	goto	l3788
+   811  0226                     u3350:
+   812  0226  2AEE               	goto	l3834
+   813                           	
+   814  0227                     l3786:	
+   815  0227  2AEE               	goto	l3834
+   816                           	
+   817  0228                     l1018:	
+   818                           	line	118
+   819                           	
+   820  0228                     l3788:	
+   821                           ;Ginza.c: 118: if(b_cur&((unsigned char)1<<i)&b_ok){
+   822  0228  3001               	movlw	(01h)
+   823  0229  00CA               	movwf	(??_main+0)+0
+   824  022A  0A4D               	incf	(main@i_1725),w
+   825  022B  2A2E               	goto	u3364
+   826  022C                     u3365:
+   827  022C  1003               	clrc
+   828  022D  0DCA               	rlf	(??_main+0)+0,f
+   829  022E                     u3364:
+   830  022E  3EFF               	addlw	-1
+   831  022F  1D03               	skipz
+   832  0230  2A2C               	goto	u3365
+   833  0231  084A               	movf	0+(??_main+0)+0,w
+   834  0232  053B               	andwf	(_b_cur),w
+   835  0233  054E               	andwf	(_b_ok),w
+   836  0234  1903               	btfsc	status,2
+   837  0235  2A37               	goto	u3371
+   838  0236  2A38               	goto	u3370
+   839  0237                     u3371:
+   840  0237  2AC4               	goto	l3828
+   841  0238                     u3370:
+   842                           	line	119
+   843                           	
+   844  0238                     l3790:	
+   845                           ;Ginza.c: 119: b_ok=b_ok&(~((unsigned char)1<<i));
+   846  0238  3001               	movlw	(01h)
+   847  0239  00CA               	movwf	(??_main+0)+0
+   848  023A  0A4D               	incf	(main@i_1725),w
+   849  023B  2A3E               	goto	u3384
+   850  023C                     u3385:
+   851  023C  1003               	clrc
+   852  023D  0DCA               	rlf	(??_main+0)+0,f
+   853  023E                     u3384:
+   854  023E  3EFF               	addlw	-1
+   855  023F  1D03               	skipz
+   856  0240  2A3C               	goto	u3385
+   857  0241  084A               	movf	0+(??_main+0)+0,w
+   858  0242  3AFF               	xorlw	0ffh
+   859  0243  054E               	andwf	(_b_ok),w
+   860  0244  00CB               	movwf	(??_main+1)+0
+   861  0245  084B               	movf	(??_main+1)+0,w
+   862  0246  00CE               	movwf	(_b_ok)
+   863                           	line	120
+   864                           ;Ginza.c: 120: switch(i){
+   865  0247  2AAF               	goto	l3826
+   866                           	line	121
+   867                           ;Ginza.c: 121: case 0:
+   868                           	
+   869  0248                     l1022:	
+   870                           	line	122
+   871                           	
+   872  0248                     l3792:	
+   873                           ;Ginza.c: 122: door_on=!door_on;
+   874  0248  3004               	movlw	1<<((_door_on)&7)
+   875  0249  06FA               	xorwf	((_door_on)/8),f
+   876                           	line	123
+   877                           ;Ginza.c: 123: break;
+   878  024A  2AE3               	goto	l1040
+   879                           	line	124
+   880                           ;Ginza.c: 124: case 1:
+   881                           	
+   882  024B                     l1024:	
+   883                           	line	126
+   884                           ;Ginza.c: 126: chime_type=0;
+   885  024B  107A               	bcf	(_chime_type/8),(_chime_type)&7
+   886                           	line	127
+   887                           	
+   888  024C                     l3794:	
+   889                           ;Ginza.c: 127: chime_time=0;
+   890  024C  01B4               	clrf	(_chime_time)
+   891  024D  01B5               	clrf	(_chime_time+1)
+   892                           	line	128
+   893                           ;Ginza.c: 128: break;
+   894  024E  2AE3               	goto	l1040
+   895                           	line	129
+   896                           ;Ginza.c: 129: case 2:
+   897                           	
+   898  024F                     l1025:	
+   899                           	line	131
+   900                           ;Ginza.c: 131: chime_type=1;
+   901  024F  147A               	bsf	(_chime_type/8),(_chime_type)&7
+   902                           	line	132
+   903                           	
+   904  0250                     l3796:	
+   905                           ;Ginza.c: 132: chime_time=0;
+   906  0250  01B4               	clrf	(_chime_time)
+   907  0251  01B5               	clrf	(_chime_time+1)
+   908                           	line	133
+   909                           ;Ginza.c: 133: break;
+   910  0252  2AE3               	goto	l1040
+   911                           	line	134
+   912                           ;Ginza.c: 134: case 4:
+   913                           	
+   914  0253                     l1026:	
+   915                           	line	135
+   916                           	
+   917  0253                     l3798:	
+   918                           ;Ginza.c: 135: if((sta_num==1)||(sta_num==19)){at_sta=1;}
+   919  0253  0850               	movf	(_sta_num),w
+   920  0254  3A01               	xorlw	01h
+   921  0255  1903               	skipnz
+   922  0256  2A58               	goto	u3391
+   923  0257  2A59               	goto	u3390
+   924  0258                     u3391:
+   925  0258  2A5F               	goto	l1029
+   926  0259                     u3390:
+   927                           	
+   928  0259                     l3800:	
+   929  0259  0850               	movf	(_sta_num),w
+   930  025A  3A13               	xorlw	013h
+   931  025B  1D03               	skipz
+   932  025C  2A5E               	goto	u3401
+   933  025D  2A5F               	goto	u3400
+   934  025E                     u3401:
+   935  025E  2A61               	goto	l3802
+   936  025F                     u3400:
+   937                           	
+   938  025F                     l1029:	
+   939  025F  147B               	bsf	(_at_sta/8),(_at_sta)&7
+   940  0260  2A61               	goto	l3802
+   941                           	
+   942  0261                     l1027:	
+   943                           	line	136
+   944                           	
+   945  0261                     l3802:	
+   946                           ;Ginza.c: 136: direction=!direction;
+   947  0261  3002               	movlw	1<<((_direction)&7)
+   948  0262  06FA               	xorwf	((_direction)/8),f
+   949                           	line	137
+   950                           ;Ginza.c: 137: break;
+   951  0263  2AE3               	goto	l1040
+   952                           	line	138
+   953                           ;Ginza.c: 138: case 3:
+   954                           	
+   955  0264                     l1030:	
+   956                           	line	139
+   957                           	
+   958  0264                     l3804:	
+   959                           ;Ginza.c: 139: if(!((sta_num==19)&&at_sta)){
+   960  0264  0850               	movf	(_sta_num),w
+   961  0265  3A13               	xorlw	013h
+   962  0266  1D03               	skipz
+   963  0267  2A69               	goto	u3411
+   964  0268  2A6A               	goto	u3410
+   965  0269                     u3411:
+   966  0269  2A6F               	goto	l3808
+   967  026A                     u3410:
+   968                           	
+   969  026A                     l3806:	
+   970  026A  187B               	btfsc	(_at_sta/8),(_at_sta)&7
+   971  026B  2A6D               	goto	u3421
+   972  026C  2A6E               	goto	u3420
+   973  026D                     u3421:
+   974  026D  2AE3               	goto	l1040
+   975  026E                     u3420:
+   976  026E  2A6F               	goto	l3808
+   977                           	
+   978  026F                     l1033:	
+   979                           	line	140
+   980                           	
+   981  026F                     l3808:	
+   982                           ;Ginza.c: 140: if(at_sta^direction){
+   983  026F  18FA               	btfsc	(_direction/8),(_direction)&7
+   984  0270  2A72               	goto	u3431
+   985  0271  2A74               	goto	u3430
+   986  0272                     u3431:
+   987  0272  3001               	movlw	1
+   988  0273  2A75               	goto	u3432
+   989  0274                     u3430:
+   990  0274  3000               	movlw	0
+   991  0275                     u3432:
+   992  0275  00CA               	movwf	(??_main+0)+0
+   993  0276  187B               	btfsc	(_at_sta/8),(_at_sta)&7
+   994  0277  2A79               	goto	u3441
+   995  0278  2A7B               	goto	u3440
+   996  0279                     u3441:
+   997  0279  3001               	movlw	1
+   998  027A  2A7C               	goto	u3442
+   999  027B                     u3440:
+  1000  027B  3000               	movlw	0
+  1001  027C                     u3442:
+  1002  027C  064A               	xorwf	(??_main+0)+0,w
+  1003  027D  1903               	skipnz
+  1004  027E  2A80               	goto	u3451
+  1005  027F  2A81               	goto	u3450
+  1006  0280                     u3451:
+  1007  0280  2A86               	goto	l3812
+  1008  0281                     u3450:
+  1009                           	line	141
+  1010                           	
+  1011  0281                     l3810:	
+  1012                           ;Ginza.c: 141: sta_num++;
+  1013  0281  3001               	movlw	(01h)
+  1014  0282  00CA               	movwf	(??_main+0)+0
+  1015  0283  084A               	movf	(??_main+0)+0,w
+  1016  0284  07D0               	addwf	(_sta_num),f
+  1017  0285  2A86               	goto	l3812
+  1018                           	line	142
+  1019                           	
+  1020  0286                     l1034:	
+  1021                           	line	143
+  1022                           	
+  1023  0286                     l3812:	
+  1024                           ;Ginza.c: 142: }
+  1025                           ;Ginza.c: 143: at_sta=!at_sta;
+  1026  0286  3001               	movlw	1<<((_at_sta)&7)
+  1027  0287  06FB               	xorwf	((_at_sta)/8),f
+  1028  0288  2AE3               	goto	l1040
+  1029                           	line	144
+  1030                           	
+  1031  0289                     l1031:	
+  1032                           	line	145
+  1033                           ;Ginza.c: 144: }
+  1034                           ;Ginza.c: 145: break;
+  1035  0289  2AE3               	goto	l1040
+  1036                           	line	146
+  1037                           ;Ginza.c: 146: case 5:
+  1038                           	
+  1039  028A                     l1035:	
+  1040                           	line	147
+  1041                           	
+  1042  028A                     l3814:	
+  1043                           ;Ginza.c: 147: if(!((sta_num==1)&&at_sta)){
+  1044  028A  0850               	movf	(_sta_num),w
+  1045  028B  3A01               	xorlw	01h
+  1046  028C  1D03               	skipz
+  1047  028D  2A8F               	goto	u3461
+  1048  028E  2A90               	goto	u3460
+  1049  028F                     u3461:
+  1050  028F  2A95               	goto	l3818
+  1051  0290                     u3460:
+  1052                           	
+  1053  0290                     l3816:	
+  1054  0290  187B               	btfsc	(_at_sta/8),(_at_sta)&7
+  1055  0291  2A93               	goto	u3471
+  1056  0292  2A94               	goto	u3470
+  1057  0293                     u3471:
+  1058  0293  2AE3               	goto	l1040
+  1059  0294                     u3470:
+  1060  0294  2A95               	goto	l3818
+  1061                           	
+  1062  0295                     l1038:	
+  1063                           	line	148
+  1064                           	
+  1065  0295                     l3818:	
+  1066                           ;Ginza.c: 148: if(!(at_sta^direction)){
+  1067  0295  18FA               	btfsc	(_direction/8),(_direction)&7
+  1068  0296  2A98               	goto	u3481
+  1069  0297  2A9A               	goto	u3480
+  1070  0298                     u3481:
+  1071  0298  3001               	movlw	1
+  1072  0299  2A9B               	goto	u3482
+  1073  029A                     u3480:
+  1074  029A  3000               	movlw	0
+  1075  029B                     u3482:
+  1076  029B  00CA               	movwf	(??_main+0)+0
+  1077  029C  187B               	btfsc	(_at_sta/8),(_at_sta)&7
+  1078  029D  2A9F               	goto	u3491
+  1079  029E  2AA1               	goto	u3490
+  1080  029F                     u3491:
+  1081  029F  3001               	movlw	1
+  1082  02A0  2AA2               	goto	u3492
+  1083  02A1                     u3490:
+  1084  02A1  3000               	movlw	0
+  1085  02A2                     u3492:
+  1086  02A2  064A               	xorwf	(??_main+0)+0,w
+  1087  02A3  1D03               	skipz
+  1088  02A4  2AA6               	goto	u3501
+  1089  02A5  2AA7               	goto	u3500
+  1090  02A6                     u3501:
+  1091  02A6  2AAA               	goto	l3822
+  1092  02A7                     u3500:
+  1093                           	line	149
+  1094                           	
+  1095  02A7                     l3820:	
+  1096                           ;Ginza.c: 149: sta_num--;
+  1097  02A7  3001               	movlw	low(01h)
+  1098  02A8  02D0               	subwf	(_sta_num),f
+  1099  02A9  2AAA               	goto	l3822
+  1100                           	line	150
+  1101                           	
+  1102  02AA                     l1039:	
+  1103                           	line	151
+  1104                           	
+  1105  02AA                     l3822:	
+  1106                           ;Ginza.c: 150: }
+  1107                           ;Ginza.c: 151: at_sta=!at_sta;
+  1108  02AA  3001               	movlw	1<<((_at_sta)&7)
+  1109  02AB  06FB               	xorwf	((_at_sta)/8),f
+  1110  02AC  2AE3               	goto	l1040
+  1111                           	line	152
+  1112                           	
+  1113  02AD                     l1036:	
+  1114                           	line	153
+  1115                           ;Ginza.c: 152: }
+  1116                           ;Ginza.c: 153: break;
+  1117  02AD  2AE3               	goto	l1040
+  1118                           	line	172
+  1119                           	
+  1120  02AE                     l3824:	
+  1121                           ;Ginza.c: 172: }
+  1122  02AE  2AE3               	goto	l1040
+  1123                           	line	120
+  1124                           	
+  1125  02AF                     l1021:	
+  1126                           	
+  1127  02AF                     l3826:	
+  1128  02AF  084D               	movf	(main@i_1725),w
+  1129                           	; Switch size 1, requested type "space"
+  1130                           ; Number of cases is 6, Range of values is 0 to 5
+  1131                           ; switch strategies available:
+  1132                           ; Name         Instructions Cycles
+  1133                           ; simple_byte           19    10 (average)
+  1134                           ; direct_byte           26     8 (fixed)
+  1135                           ; jumptable            260     6 (fixed)
+  1136                           ; rangetable            10     6 (fixed)
+  1137                           ; spacedrange           18     9 (fixed)
+  1138                           ; locatedrange           6     3 (fixed)
+  1139                           ;	Chosen strategy is simple_byte
+  1140                           
+  1141                           	opt asmopt_off
+  1142  02B0  3A00               	xorlw	0^0	; case 0
+  1143  02B1  1903               	skipnz
+  1144  02B2  2A48               	goto	l3792
+  1145  02B3  3A01               	xorlw	1^0	; case 1
+  1146  02B4  1903               	skipnz
+  1147  02B5  2A4B               	goto	l1024
+  1148  02B6  3A03               	xorlw	2^1	; case 2
+  1149  02B7  1903               	skipnz
+  1150  02B8  2A4F               	goto	l1025
+  1151  02B9  3A01               	xorlw	3^2	; case 3
+  1152  02BA  1903               	skipnz
+  1153  02BB  2A64               	goto	l3804
+  1154  02BC  3A07               	xorlw	4^3	; case 4
+  1155  02BD  1903               	skipnz
+  1156  02BE  2A53               	goto	l3798
+  1157  02BF  3A01               	xorlw	5^4	; case 5
+  1158  02C0  1903               	skipnz
+  1159  02C1  2A8A               	goto	l3814
+  1160  02C2  2AE3               	goto	l1040
+  1161                           	opt asmopt_on
+  1162                           
+  1163                           	line	172
+  1164                           	
+  1165  02C3                     l1023:	
+  1166                           	line	173
+  1167                           ;Ginza.c: 173: }else{
+  1168  02C3  2AE3               	goto	l1040
+  1169                           	
+  1170  02C4                     l1020:	
+  1171                           	line	174
+  1172                           	
+  1173  02C4                     l3828:	
+  1174                           ;Ginza.c: 174: if(!((b_cur|b_ok)&((unsigned char)1<<i))){
+  1175  02C4  3001               	movlw	(01h)
+  1176  02C5  00CA               	movwf	(??_main+0)+0
+  1177  02C6  0A4D               	incf	(main@i_1725),w
+  1178  02C7  2ACA               	goto	u3514
+  1179  02C8                     u3515:
+  1180  02C8  1003               	clrc
+  1181  02C9  0DCA               	rlf	(??_main+0)+0,f
+  1182  02CA                     u3514:
+  1183  02CA  3EFF               	addlw	-1
+  1184  02CB  1D03               	skipz
+  1185  02CC  2AC8               	goto	u3515
+  1186  02CD  083B               	movf	(_b_cur),w
+  1187  02CE  044E               	iorwf	(_b_ok),w
+  1188  02CF  054A               	andwf	0+(??_main+0)+0,w
+  1189  02D0  1D03               	btfss	status,2
+  1190  02D1  2AD3               	goto	u3521
+  1191  02D2  2AD4               	goto	u3520
+  1192  02D3                     u3521:
+  1193  02D3  2AE3               	goto	l1040
+  1194  02D4                     u3520:
+  1195                           	line	175
+  1196                           	
+  1197  02D4                     l3830:	
+  1198                           ;Ginza.c: 175: b_ok=b_ok|((unsigned char)1<<i);
+  1199  02D4  3001               	movlw	(01h)
+  1200  02D5  00CA               	movwf	(??_main+0)+0
+  1201  02D6  0A4D               	incf	(main@i_1725),w
+  1202  02D7  2ADA               	goto	u3534
+  1203  02D8                     u3535:
+  1204  02D8  1003               	clrc
+  1205  02D9  0DCA               	rlf	(??_main+0)+0,f
+  1206  02DA                     u3534:
+  1207  02DA  3EFF               	addlw	-1
+  1208  02DB  1D03               	skipz
+  1209  02DC  2AD8               	goto	u3535
+  1210  02DD  084A               	movf	0+(??_main+0)+0,w
+  1211  02DE  044E               	iorwf	(_b_ok),w
+  1212  02DF  00CB               	movwf	(??_main+1)+0
+  1213  02E0  084B               	movf	(??_main+1)+0,w
+  1214  02E1  00CE               	movwf	(_b_ok)
+  1215  02E2  2AE3               	goto	l1040
+  1216                           	line	176
+  1217                           	
+  1218  02E3                     l1041:	
+  1219                           	line	177
+  1220                           	
+  1221  02E3                     l1040:	
+  1222                           	line	117
+  1223  02E3  3001               	movlw	(01h)
+  1224  02E4  00CA               	movwf	(??_main+0)+0
+  1225  02E5  084A               	movf	(??_main+0)+0,w
+  1226  02E6  07CD               	addwf	(main@i_1725),f
+  1227                           	
+  1228  02E7                     l3832:	
+  1229  02E7  3006               	movlw	(06h)
+  1230  02E8  024D               	subwf	(main@i_1725),w
+  1231  02E9  1C03               	skipc
+  1232  02EA  2AEC               	goto	u3541
+  1233  02EB  2AED               	goto	u3540
+  1234  02EC                     u3541:
+  1235  02EC  2A28               	goto	l3788
+  1236  02ED                     u3540:
+  1237  02ED  2AEE               	goto	l3834
+  1238                           	
+  1239  02EE                     l1019:	
+  1240                           	line	179
+  1241                           	
+  1242  02EE                     l3834:	
+  1243                           ;Ginza.c: 176: }
+  1244                           ;Ginza.c: 177: }
+  1245                           ;Ginza.c: 178: }
+  1246                           ;Ginza.c: 179: _delay((unsigned long)((10)*(4000000/4000.0)));
+  1247                           	opt asmopt_off
+  1248  02EE  300D               movlw	13
+  1249  02EF  00CB               movwf	((??_main+0)+0+1),f
+  1250  02F0  30FB               	movlw	251
+  1251  02F1  00CA               movwf	((??_main+0)+0),f
+  1252  02F2                     u3557:
+  1253  02F2  0BCA               	decfsz	((??_main+0)+0),f
+  1254  02F3  2AF2               	goto	u3557
+  1255  02F4  0BCB               	decfsz	((??_main+0)+0+1),f
+  1256  02F5  2AF2               	goto	u3557
+  1257  02F6  2AF7               	nop2
+  1258                           opt asmopt_on
+  1259                           
+  1260  02F7  2A1D               	goto	l3784
+  1261                           	line	180
+  1262                           	
+  1263  02F8                     l1042:	
+  1264                           	line	116
+  1265  02F8  2A1D               	goto	l3784
+  1266                           	
+  1267  02F9                     l1043:	
+  1268                           	line	181
+  1269                           	
+  1270  02F9                     l1044:	
+  1271                           	global	start
+  1272  02F9  120A  118A  2812   	ljmp	start
+  1273                           	opt stack 0
+  1274                           GLOBAL	__end_of_main
+  1275  02FC                     	__end_of_main:
+  1276 ;; =============== function _main ends ============
+  1277                           
+  1278                           	signat	_main,88
+  1279                           	global	_elapse
+  1280                           psect	text125,local,class=CODE,delta=2
+  1281                           global __ptext125
+  1282  0015                     __ptext125:
+  1283                           
+  1284 ;; *************** function _elapse *****************
+  1285 ;; Defined at:
+  1286 ;;		line 183 in file "D:\Ginza\Ginza.c"
+  1287 ;; Parameters:    Size  Location     Type
+  1288 ;;		None
+  1289 ;; Auto vars:     Size  Location     Type
+  1290 ;;  i               1   11[BANK0 ] unsigned char 
+  1291 ;; Return value:  Size  Location     Type
+  1292 ;;		None               void
+  1293 ;; Registers used:
+  1294 ;;		wreg, status,2, status,0, btemp+1
+  1295 ;; Tracked objects:
+  1296 ;;		On entry : 0/0
+  1297 ;;		On exit  : 0/0
+  1298 ;;		Unchanged: 0/0
+  1299 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1300 ;;      Params:         0       0       0       0       0
+  1301 ;;      Locals:         0      12       0       0       0
+  1302 ;;      Temps:         10       0       0       0       0
+  1303 ;;      Totals:        10      12       0       0       0
+  1304 ;;Total ram usage:       22 bytes
+  1305 ;; Hardware stack levels used:    1
+  1306 ;; This function calls:
+  1307 ;;		Nothing
+  1308 ;; This function is called by:
+  1309 ;;		Interrupt level 1
+  1310 ;; This function uses a non-reentrant model
+  1311 ;;
+  1312                           psect	text125
+  1313                           	file	"D:\Ginza\Ginza.c"
+  1314                           	line	183
+  1315                           	global	__size_of_elapse
+  1316  0194                     	__size_of_elapse	equ	__end_of_elapse-_elapse
+  1317                           	
+  1318  0015                     _elapse:	
+  1319                           	opt	stack 7
+  1320                           ; Regs used in _elapse: [wreg+status,2+status,0+btemp+1]
+  1321                           psect	intentry,class=CODE,delta=2
+  1322                           global __pintentry
+  1323  0004                     __pintentry:
+  1324                           global interrupt_function
+  1325  0004                     interrupt_function:
+  1326                           	global saved_w
+  1327  007E                     	saved_w	set	btemp+0
+  1328  0004  00FE               	movwf	saved_w
+  1329  0005  0E03               	swapf	status,w
+  1330  0006  00F6               	movwf	(??_elapse+6)
+  1331  0007  0804               	movf	fsr0,w
+  1332  0008  00F7               	movwf	(??_elapse+7)
+  1333  0009  080A               	movf	pclath,w
+  1334  000A  00F8               	movwf	(??_elapse+8)
+  1335  000B  1283               	bcf	status, 5	;RP0=0, select bank0
+  1336  000C  1303               	bcf	status, 6	;RP1=0, select bank0
+  1337  000D  087F               	movf	btemp+1,w
+  1338  000E  00F9               	movwf	(??_elapse+9)
+  1339  000F  120A  118A  2815   	ljmp	_elapse
+  1340                           psect	text125
+  1341                           	line	184
+  1342                           	
+  1343  0015                     i1l3560:	
+  1344                           ;Ginza.c: 184: if(TMR1IF){
+  1345  0015  1C0C               	btfss	(96/8),(96)&7
+  1346  0016  2818               	goto	u286_21
+  1347  0017  2819               	goto	u286_20
+  1348  0018                     u286_21:
+  1349  0018  28CC               	goto	i1l1047
+  1350  0019                     u286_20:
+  1351                           	line	185
+  1352                           	
+  1353  0019                     i1l3562:	
+  1354                           ;Ginza.c: 185: TMR1IF=0;
+  1355  0019  100C               	bcf	(96/8),(96)&7
+  1356                           	line	186
+  1357                           	
+  1358  001A                     i1l3564:	
+  1359                           ;Ginza.c: 186: time++;
+  1360  001A  3001               	movlw	(01h)
+  1361  001B  00F0               	movwf	(??_elapse+0)+0
+  1362  001C  0870               	movf	(??_elapse+0)+0,w
+  1363  001D  07BD               	addwf	(_time),f
+  1364                           	line	187
+  1365                           	
+  1366  001E                     i1l3566:	
+  1367                           ;Ginza.c: 187: if(time>=2){time=0;}
+  1368  001E  3002               	movlw	(02h)
+  1369  001F  023D               	subwf	(_time),w
+  1370  0020  1C03               	skipc
+  1371  0021  2823               	goto	u287_21
+  1372  0022  2824               	goto	u287_20
+  1373  0023                     u287_21:
+  1374  0023  2825               	goto	i1l1048
+  1375  0024                     u287_20:
+  1376                           	
+  1377  0024                     i1l3568:	
+  1378  0024  01BD               	clrf	(_time)
+  1379                           	
+  1380  0025                     i1l1048:	
+  1381                           	line	188
+  1382                           ;Ginza.c: 188: led_on=time<1;
+  1383  0025  08BD               	movf	(_time)
+  1384  0026  1903               	skipnz
+  1385  0027  2829               	goto	u288_21
+  1386  0028  282B               	goto	u288_20
+  1387                           	
+  1388  0029                     u288_21:
+  1389  0029  15FA               	bsf	(_led_on/8),(_led_on)&7
+  1390  002A  282C               	goto	u289_24
+  1391  002B                     u288_20:
+  1392  002B  11FA               	bcf	(_led_on/8),(_led_on)&7
+  1393  002C                     u289_24:
+  1394                           	line	189
+  1395                           ;Ginza.c: 189: RA5=led_on&&door_on;
+  1396  002C  1283               	bcf	status, 5	;RP0=0, select bank0
+  1397  002D  1303               	bcf	status, 6	;RP1=0, select bank0
+  1398  002E  01C8               	clrf	(_elapse$1728)
+  1399  002F  1DFA               	btfss	(_led_on/8),(_led_on)&7
+  1400  0030  2832               	goto	u290_21
+  1401  0031  2833               	goto	u290_20
+  1402  0032                     u290_21:
+  1403  0032  283B               	goto	i1l3574
+  1404  0033                     u290_20:
+  1405                           	
+  1406  0033                     i1l3570:	
+  1407  0033  1D7A               	btfss	(_door_on/8),(_door_on)&7
+  1408  0034  2836               	goto	u291_21
+  1409  0035  2837               	goto	u291_20
+  1410  0036                     u291_21:
+  1411  0036  283B               	goto	i1l3574
+  1412  0037                     u291_20:
+  1413                           	
+  1414  0037                     i1l3572:	
+  1415  0037  01C8               	clrf	(_elapse$1728)
+  1416  0038  1403               	bsf	status,0
+  1417  0039  0DC8               	rlf	(_elapse$1728),f
+  1418  003A  283B               	goto	i1l3574
+  1419                           	
+  1420  003B                     i1l1050:	
+  1421                           	
+  1422  003B                     i1l3574:	
+  1423  003B  0848               	movf	(_elapse$1728),w
+  1424  003C  1D03               	skipz
+  1425  003D  1685               	bsf	(45/8),(45)&7
+  1426  003E  1903               	skipnz
+  1427  003F  1285               	bcf	(45/8),(45)&7
+  1428                           	line	190
+  1429                           	
+  1430  0040                     i1l3576:	
+  1431                           ;Ginza.c: 190: RC0=0;
+  1432  0040  1007               	bcf	(56/8),(56)&7
+  1433                           	line	191
+  1434                           	
+  1435  0041                     i1l3578:	
+  1436                           ;Ginza.c: 191: for(unsigned char i=40;i>=1;i--){
+  1437  0041  3028               	movlw	(028h)
+  1438  0042  00F0               	movwf	(??_elapse+0)+0
+  1439  0043  0870               	movf	(??_elapse+0)+0,w
+  1440  0044  00C9               	movwf	(elapse@i)
+  1441  0045  08C9               	movf	(elapse@i),f
+  1442  0046  1D03               	skipz
+  1443  0047  2849               	goto	u292_21
+  1444  0048  284A               	goto	u292_20
+  1445  0049                     u292_21:
+  1446  0049  284C               	goto	i1l3582
+  1447  004A                     u292_20:
+  1448  004A  28C1               	goto	i1l1052
+  1449                           	
+  1450  004B                     i1l3580:	
+  1451  004B  28C1               	goto	i1l1052
+  1452                           	
+  1453  004C                     i1l1051:	
+  1454                           	line	195
+  1455                           	
+  1456  004C                     i1l3582:	
+  1457                           ;Ginza.c: 195: if((((sta_num+1)<<1)==i)&&(at_sta||led_on)){
+  1458  004C  0850               	movf	(_sta_num),w
+  1459  004D  00F0               	movwf	(??_elapse+0)+0
+  1460  004E  01F1               	clrf	(??_elapse+0)+0+1
+  1461  004F  3001               	movlw	01h
+  1462  0050  00FF               	movwf	btemp+1
+  1463  0051                     u293_25:
+  1464  0051  1003               	clrc
+  1465  0052  0DF0               	rlf	(??_elapse+0)+0,f
+  1466  0053  0DF1               	rlf	(??_elapse+0)+1,f
+  1467  0054  0BFF               	decfsz	btemp+1,f
+  1468  0055  2851               	goto	u293_25
+  1469  0056  0870               	movf	0+(??_elapse+0)+0,w
+  1470  0057  3E02               	addlw	low(02h)
+  1471  0058  00F2               	movwf	(??_elapse+2)+0
+  1472  0059  0871               	movf	1+(??_elapse+0)+0,w
+  1473  005A  1803               	skipnc
+  1474  005B  3E01               	addlw	1
+  1475  005C  3E00               	addlw	high(02h)
+  1476  005D  00F3               	movwf	1+(??_elapse+2)+0
+  1477  005E  0849               	movf	(elapse@i),w
+  1478  005F  0672               	xorwf	0+(??_elapse+2)+0,w
+  1479  0060  0473               	iorwf	1+(??_elapse+2)+0,w
+  1480  0061  1D03               	skipz
+  1481  0062  2864               	goto	u294_21
+  1482  0063  2865               	goto	u294_20
+  1483  0064                     u294_21:
+  1484  0064  286F               	goto	i1l3588
+  1485  0065                     u294_20:
+  1486                           	
+  1487  0065                     i1l3584:	
+  1488  0065  187B               	btfsc	(_at_sta/8),(_at_sta)&7
+  1489  0066  2868               	goto	u295_21
+  1490  0067  2869               	goto	u295_20
+  1491  0068                     u295_21:
+  1492  0068  286D               	goto	i1l1055
+  1493  0069                     u295_20:
+  1494                           	
+  1495  0069                     i1l3586:	
+  1496  0069  1DFA               	btfss	(_led_on/8),(_led_on)&7
+  1497  006A  286C               	goto	u296_21
+  1498  006B  286D               	goto	u296_20
+  1499  006C                     u296_21:
+  1500  006C  286F               	goto	i1l3588
+  1501  006D                     u296_20:
+  1502                           	
+  1503  006D                     i1l1055:	
+  1504                           	line	196
+  1505                           ;Ginza.c: 196: RB6=1;
+  1506  006D  1706               	bsf	(54/8),(54)&7
+  1507                           	line	197
+  1508                           ;Ginza.c: 197: }else if(((((sta_num+1)<<1)+((direction^at_sta)?1:-1))==i)&&((!at_sta)||l
+                                 ed_on)){
+  1509  006E  28B8               	goto	i1l1056
+  1510                           	
+  1511  006F                     i1l1053:	
+  1512                           	
+  1513  006F                     i1l3588:	
+  1514  006F  187B               	btfsc	(_at_sta/8),(_at_sta)&7
+  1515  0070  2872               	goto	u297_21
+  1516  0071  2874               	goto	u297_20
+  1517  0072                     u297_21:
+  1518  0072  3001               	movlw	1
+  1519  0073  2875               	goto	u297_22
+  1520  0074                     u297_20:
+  1521  0074  3000               	movlw	0
+  1522  0075                     u297_22:
+  1523  0075  00F0               	movwf	(??_elapse+0)+0
+  1524  0076  18FA               	btfsc	(_direction/8),(_direction)&7
+  1525  0077  2879               	goto	u298_21
+  1526  0078  287B               	goto	u298_20
+  1527  0079                     u298_21:
+  1528  0079  3001               	movlw	1
+  1529  007A  287C               	goto	u298_22
+  1530  007B                     u298_20:
+  1531  007B  3000               	movlw	0
+  1532  007C                     u298_22:
+  1533  007C  0670               	xorwf	(??_elapse+0)+0,w
+  1534  007D  1D03               	skipz
+  1535  007E  2880               	goto	u299_21
+  1536  007F  2881               	goto	u299_20
+  1537  0080                     u299_21:
+  1538  0080  2886               	goto	i1l3592
+  1539  0081                     u299_20:
+  1540                           	
+  1541  0081                     i1l3590:	
+  1542  0081  30FF               	movlw	low(-1)
+  1543  0082  00BE               	movwf	(_elapse$1730)
+  1544  0083  30FF               	movlw	high(-1)
+  1545  0084  00BF               	movwf	((_elapse$1730))+1
+  1546  0085  288B               	goto	i1l3594
+  1547                           	
+  1548  0086                     i1l1059:	
+  1549                           	
+  1550  0086                     i1l3592:	
+  1551  0086  3001               	movlw	low(01h)
+  1552  0087  00BE               	movwf	(_elapse$1730)
+  1553  0088  3000               	movlw	high(01h)
+  1554  0089  00BF               	movwf	((_elapse$1730))+1
+  1555  008A  288B               	goto	i1l3594
+  1556                           	
+  1557  008B                     i1l1061:	
+  1558                           	
+  1559  008B                     i1l3594:	
+  1560  008B  0850               	movf	(_sta_num),w
+  1561  008C  00F0               	movwf	(??_elapse+0)+0
+  1562  008D  01F1               	clrf	(??_elapse+0)+0+1
+  1563  008E  3001               	movlw	01h
+  1564  008F  00FF               	movwf	btemp+1
+  1565  0090                     u300_25:
+  1566  0090  1003               	clrc
+  1567  0091  0DF0               	rlf	(??_elapse+0)+0,f
+  1568  0092  0DF1               	rlf	(??_elapse+0)+1,f
+  1569  0093  0BFF               	decfsz	btemp+1,f
+  1570  0094  2890               	goto	u300_25
+  1571  0095  083E               	movf	(_elapse$1730),w
+  1572  0096  0770               	addwf	0+(??_elapse+0)+0,w
+  1573  0097  00F2               	movwf	(??_elapse+2)+0
+  1574  0098  083F               	movf	(_elapse$1730+1),w
+  1575  0099  1803               	skipnc
+  1576  009A  0A3F               	incf	(_elapse$1730+1),w
+  1577  009B  0771               	addwf	1+(??_elapse+0)+0,w
+  1578  009C  00F3               	movwf	1+(??_elapse+2)+0
+  1579  009D  0872               	movf	0+(??_elapse+2)+0,w
+  1580  009E  3E02               	addlw	low(02h)
+  1581  009F  00F4               	movwf	(??_elapse+4)+0
+  1582  00A0  0873               	movf	1+(??_elapse+2)+0,w
+  1583  00A1  1803               	skipnc
+  1584  00A2  3E01               	addlw	1
+  1585  00A3  3E00               	addlw	high(02h)
+  1586  00A4  00F5               	movwf	1+(??_elapse+4)+0
+  1587  00A5  0849               	movf	(elapse@i),w
+  1588  00A6  0674               	xorwf	0+(??_elapse+4)+0,w
+  1589  00A7  0475               	iorwf	1+(??_elapse+4)+0,w
+  1590  00A8  1D03               	skipz
+  1591  00A9  28AB               	goto	u301_21
+  1592  00AA  28AC               	goto	u301_20
+  1593  00AB                     u301_21:
+  1594  00AB  28B6               	goto	i1l1057
+  1595  00AC                     u301_20:
+  1596                           	
+  1597  00AC                     i1l3596:	
+  1598  00AC  1C7B               	btfss	(_at_sta/8),(_at_sta)&7
+  1599  00AD  28AF               	goto	u302_21
+  1600  00AE  28B0               	goto	u302_20
+  1601  00AF                     u302_21:
+  1602  00AF  28B4               	goto	i1l1063
+  1603  00B0                     u302_20:
+  1604                           	
+  1605  00B0                     i1l3598:	
+  1606  00B0  1DFA               	btfss	(_led_on/8),(_led_on)&7
+  1607  00B1  28B3               	goto	u303_21
+  1608  00B2  28B4               	goto	u303_20
+  1609  00B3                     u303_21:
+  1610  00B3  28B6               	goto	i1l1057
+  1611  00B4                     u303_20:
+  1612                           	
+  1613  00B4                     i1l1063:	
+  1614                           	line	198
+  1615                           ;Ginza.c: 198: RB6=1;
+  1616  00B4  1706               	bsf	(54/8),(54)&7
+  1617                           	line	199
+  1618                           ;Ginza.c: 199: }else{
+  1619  00B5  28B8               	goto	i1l1056
+  1620                           	
+  1621  00B6                     i1l1057:	
+  1622                           	line	200
+  1623                           ;Ginza.c: 200: RB6=0;
+  1624  00B6  1306               	bcf	(54/8),(54)&7
+  1625  00B7  28B8               	goto	i1l1056
+  1626                           	line	201
+  1627                           	
+  1628  00B8                     i1l1064:	
+  1629                           	
+  1630  00B8                     i1l1056:	
+  1631                           	line	202
+  1632                           ;Ginza.c: 201: }
+  1633                           ;Ginza.c: 202: RB7=1;
+  1634  00B8  1786               	bsf	(55/8),(55)&7
+  1635                           	line	203
+  1636                           ;Ginza.c: 203: RB7=0;
+  1637  00B9  1386               	bcf	(55/8),(55)&7
+  1638                           	line	191
+  1639                           	
+  1640  00BA                     i1l3600:	
+  1641  00BA  3001               	movlw	low(01h)
+  1642  00BB  02C9               	subwf	(elapse@i),f
+  1643                           	
+  1644  00BC                     i1l3602:	
+  1645  00BC  08C9               	movf	(elapse@i),f
+  1646  00BD  1D03               	skipz
+  1647  00BE  28C0               	goto	u304_21
+  1648  00BF  28C1               	goto	u304_20
+  1649  00C0                     u304_21:
+  1650  00C0  284C               	goto	i1l3582
+  1651  00C1                     u304_20:
+  1652                           	
+  1653  00C1                     i1l1052:	
+  1654                           	line	205
+  1655                           ;Ginza.c: 204: }
+  1656                           ;Ginza.c: 205: RB6=0;
+  1657  00C1  1306               	bcf	(54/8),(54)&7
+  1658                           	line	206
+  1659                           ;Ginza.c: 206: if(direction){
+  1660  00C2  1CFA               	btfss	(_direction/8),(_direction)&7
+  1661  00C3  28C5               	goto	u305_21
+  1662  00C4  28C6               	goto	u305_20
+  1663  00C5                     u305_21:
+  1664  00C5  28C9               	goto	i1l1065
+  1665  00C6                     u305_20:
+  1666                           	line	207
+  1667                           	
+  1668  00C6                     i1l3604:	
+  1669                           ;Ginza.c: 207: RC5=0;
+  1670  00C6  1287               	bcf	(61/8),(61)&7
+  1671                           	line	208
+  1672                           ;Ginza.c: 208: RC4=1;
+  1673  00C7  1607               	bsf	(60/8),(60)&7
+  1674                           	line	209
+  1675                           ;Ginza.c: 209: }else{
+  1676  00C8  28CB               	goto	i1l1066
+  1677                           	
+  1678  00C9                     i1l1065:	
+  1679                           	line	210
+  1680                           ;Ginza.c: 210: RC5=1;
+  1681  00C9  1687               	bsf	(61/8),(61)&7
+  1682                           	line	211
+  1683                           ;Ginza.c: 211: RC4=0;
+  1684  00CA  1207               	bcf	(60/8),(60)&7
+  1685                           	line	212
+  1686                           	
+  1687  00CB                     i1l1066:	
+  1688                           	line	213
+  1689                           ;Ginza.c: 212: }
+  1690                           ;Ginza.c: 213: RC0=1;
+  1691  00CB  1407               	bsf	(56/8),(56)&7
+  1692                           	line	214
+  1693                           	
+  1694  00CC                     i1l1047:	
+  1695                           	line	215
+  1696                           ;Ginza.c: 214: }
+  1697                           ;Ginza.c: 215: if(T0IF){
+  1698  00CC  1D0B               	btfss	(90/8),(90)&7
+  1699  00CD  28CF               	goto	u306_21
+  1700  00CE  28D0               	goto	u306_20
+  1701  00CF                     u306_21:
+  1702  00CF  299E               	goto	i1l1102
+  1703  00D0                     u306_20:
+  1704                           	line	217
+  1705                           	
+  1706  00D0                     i1l3606:	
+  1707                           ;Ginza.c: 217: T0IF=0;
+  1708  00D0  110B               	bcf	(90/8),(90)&7
+  1709                           	line	218
+  1710                           ;Ginza.c: 218: while(timercount--);
+  1711  00D1  28D3               	goto	i1l3608
+  1712                           	
+  1713  00D2                     i1l1069:	
+  1714  00D2  28D3               	goto	i1l3608
+  1715                           	
+  1716  00D3                     i1l1068:	
+  1717                           	
+  1718  00D3                     i1l3608:	
+  1719  00D3  3001               	movlw	low(01h)
+  1720  00D4  02D1               	subwf	(_timercount),f
+  1721  00D5  0851               	movf	((_timercount)),w
+  1722  00D6  3AFF               	xorlw	0FFh
+  1723  00D7  1D03               	skipz
+  1724  00D8  28DA               	goto	u307_21
+  1725  00D9  28DB               	goto	u307_20
+  1726  00DA                     u307_21:
+  1727  00DA  28D3               	goto	i1l3608
+  1728  00DB                     u307_20:
+  1729                           	
+  1730  00DB                     i1l1070:	
+  1731                           	line	220
+  1732                           # 220 "D:\Ginza\Ginza.c"
+  1733  00DB  0000                 nop ;#
+  1734                           	line	221
+  1735                           # 221 "D:\Ginza\Ginza.c"
+  1736  00DC  0000                 nop ;#
+  1737                           	line	222
+  1738                           # 222 "D:\Ginza\Ginza.c"
+  1739  00DD  0000                 nop ;#
+  1740                           	line	223
+  1741                           # 223 "D:\Ginza\Ginza.c"
+  1742  00DE  0000                 nop ;#
+  1743                           psect	text125
+  1744                           	line	225
+  1745                           	
+  1746  00DF                     i1l3610:	
+  1747                           ;Ginza.c: 225: timercount=2;
+  1748  00DF  3002               	movlw	(02h)
+  1749  00E0  00F0               	movwf	(??_elapse+0)+0
+  1750  00E1  0870               	movf	(??_elapse+0)+0,w
+  1751  00E2  1283               	bcf	status, 5	;RP0=0, select bank0
+  1752  00E3  1303               	bcf	status, 6	;RP1=0, select bank0
+  1753  00E4  00D1               	movwf	(_timercount)
+  1754                           	line	226
+  1755                           ;Ginza.c: 226: TMR0=132;
+  1756  00E5  3084               	movlw	(084h)
+  1757  00E6  0081               	movwf	(1)	;volatile
+  1758                           	line	229
+  1759                           ;Ginza.c: 229: if(chime_time<277){
+  1760  00E7  3001               	movlw	high(0115h)
+  1761  00E8  0235               	subwf	(_chime_time+1),w
+  1762  00E9  3015               	movlw	low(0115h)
+  1763  00EA  1903               	skipnz
+  1764  00EB  0234               	subwf	(_chime_time),w
+  1765  00EC  1803               	skipnc
+  1766  00ED  28EF               	goto	u308_21
+  1767  00EE  28F0               	goto	u308_20
+  1768  00EF                     u308_21:
+  1769  00EF  296F               	goto	i1l3646
+  1770  00F0                     u308_20:
+  1771                           	line	230
+  1772                           	
+  1773  00F0                     i1l3612:	
+  1774                           ;Ginza.c: 230: if((chime_time<40)||((chime_time>=184)&(chime_time<224))){
+  1775  00F0  3000               	movlw	high(028h)
+  1776  00F1  0235               	subwf	(_chime_time+1),w
+  1777  00F2  3028               	movlw	low(028h)
+  1778  00F3  1903               	skipnz
+  1779  00F4  0234               	subwf	(_chime_time),w
+  1780  00F5  1C03               	skipc
+  1781  00F6  28F8               	goto	u309_21
+  1782  00F7  28F9               	goto	u309_20
+  1783  00F8                     u309_21:
+  1784  00F8  290B               	goto	i1l1074
+  1785  00F9                     u309_20:
+  1786                           	
+  1787  00F9                     i1l3614:	
+  1788  00F9  3000               	movlw	high(0B8h)
+  1789  00FA  0235               	subwf	(_chime_time+1),w
+  1790  00FB  30B8               	movlw	low(0B8h)
+  1791  00FC  1903               	skipnz
+  1792  00FD  0234               	subwf	(_chime_time),w
+  1793  00FE  1C03               	skipc
+  1794  00FF  2901               	goto	u310_21
+  1795  0100  2902               	goto	u310_20
+  1796  0101                     u310_21:
+  1797  0101  292F               	goto	i1l3628
+  1798  0102                     u310_20:
+  1799                           	
+  1800  0102                     i1l3616:	
+  1801  0102  3000               	movlw	high(0E0h)
+  1802  0103  0235               	subwf	(_chime_time+1),w
+  1803  0104  30E0               	movlw	low(0E0h)
+  1804  0105  1903               	skipnz
+  1805  0106  0234               	subwf	(_chime_time),w
+  1806  0107  1803               	skipnc
+  1807  0108  290A               	goto	u311_21
+  1808  0109  290B               	goto	u311_20
+  1809  010A                     u311_21:
+  1810  010A  292F               	goto	i1l3628
+  1811  010B                     u311_20:
+  1812                           	
+  1813  010B                     i1l1074:	
+  1814                           	line	231
+  1815                           ;Ginza.c: 231: PR2=chime_type?105:112;
+  1816  010B  187A               	btfsc	(_chime_type/8),(_chime_type)&7
+  1817  010C  290E               	goto	u312_21
+  1818  010D  290F               	goto	u312_20
+  1819  010E                     u312_21:
+  1820  010E  2914               	goto	i1l3620
+  1821  010F                     u312_20:
+  1822                           	
+  1823  010F                     i1l3618:	
+  1824  010F  3070               	movlw	low(070h)
+  1825  0110  00C0               	movwf	(_elapse$1731)
+  1826  0111  3000               	movlw	high(070h)
+  1827  0112  00C1               	movwf	((_elapse$1731))+1
+  1828  0113  2918               	goto	i1l1078
+  1829                           	
+  1830  0114                     i1l1076:	
+  1831                           	
+  1832  0114                     i1l3620:	
+  1833  0114  3069               	movlw	low(069h)
+  1834  0115  00C0               	movwf	(_elapse$1731)
+  1835  0116  3000               	movlw	high(069h)
+  1836  0117  00C1               	movwf	((_elapse$1731))+1
+  1837                           	
+  1838  0118                     i1l1078:	
+  1839  0118  0840               	movf	(_elapse$1731),w
+  1840  0119  1683               	bsf	status, 5	;RP0=1, select bank1
+  1841  011A  1303               	bcf	status, 6	;RP1=0, select bank1
+  1842  011B  0092               	movwf	(146)^080h	;volatile
+  1843                           	line	232
+  1844                           	
+  1845  011C                     i1l3622:	
+  1846                           ;Ginza.c: 232: CCPR1L=chime_type?53:56;
+  1847  011C  187A               	btfsc	(_chime_type/8),(_chime_type)&7
+  1848  011D  291F               	goto	u313_21
+  1849  011E  2920               	goto	u313_20
+  1850  011F                     u313_21:
+  1851  011F  2927               	goto	i1l3626
+  1852  0120                     u313_20:
+  1853                           	
+  1854  0120                     i1l3624:	
+  1855  0120  3038               	movlw	low(038h)
+  1856  0121  1283               	bcf	status, 5	;RP0=0, select bank0
+  1857  0122  1303               	bcf	status, 6	;RP1=0, select bank0
+  1858  0123  00C2               	movwf	(_elapse$1732)
+  1859  0124  3000               	movlw	high(038h)
+  1860  0125  00C3               	movwf	((_elapse$1732))+1
+  1861  0126  292C               	goto	i1l1082
+  1862                           	
+  1863  0127                     i1l1080:	
+  1864                           	
+  1865  0127                     i1l3626:	
+  1866  0127  3035               	movlw	low(035h)
+  1867  0128  1283               	bcf	status, 5	;RP0=0, select bank0
+  1868  0129  00C2               	movwf	(_elapse$1732)
+  1869  012A  3000               	movlw	high(035h)
+  1870  012B  00C3               	movwf	((_elapse$1732))+1
+  1871                           	
+  1872  012C                     i1l1082:	
+  1873  012C  0842               	movf	(_elapse$1732),w
+  1874  012D  0095               	movwf	(21)	;volatile
+  1875                           	line	233
+  1876                           ;Ginza.c: 233: }else if((chime_time<93)||(chime_time>=224)){
+  1877  012E  2968               	goto	i1l3644
+  1878                           	
+  1879  012F                     i1l1072:	
+  1880                           	
+  1881  012F                     i1l3628:	
+  1882  012F  3000               	movlw	high(05Dh)
+  1883  0130  0235               	subwf	(_chime_time+1),w
+  1884  0131  305D               	movlw	low(05Dh)
+  1885  0132  1903               	skipnz
+  1886  0133  0234               	subwf	(_chime_time),w
+  1887  0134  1C03               	skipc
+  1888  0135  2937               	goto	u314_21
+  1889  0136  2938               	goto	u314_20
+  1890  0137                     u314_21:
+  1891  0137  2941               	goto	i1l1086
+  1892  0138                     u314_20:
+  1893                           	
+  1894  0138                     i1l3630:	
+  1895  0138  3000               	movlw	high(0E0h)
+  1896  0139  0235               	subwf	(_chime_time+1),w
+  1897  013A  30E0               	movlw	low(0E0h)
+  1898  013B  1903               	skipnz
+  1899  013C  0234               	subwf	(_chime_time),w
+  1900  013D  1C03               	skipc
+  1901  013E  2940               	goto	u315_21
+  1902  013F  2941               	goto	u315_20
+  1903  0140                     u315_21:
+  1904  0140  2965               	goto	i1l3642
+  1905  0141                     u315_20:
+  1906                           	
+  1907  0141                     i1l1086:	
+  1908                           	line	234
+  1909                           ;Ginza.c: 234: PR2=chime_type?141:149;
+  1910  0141  187A               	btfsc	(_chime_type/8),(_chime_type)&7
+  1911  0142  2944               	goto	u316_21
+  1912  0143  2945               	goto	u316_20
+  1913  0144                     u316_21:
+  1914  0144  294A               	goto	i1l3634
+  1915  0145                     u316_20:
+  1916                           	
+  1917  0145                     i1l3632:	
+  1918  0145  3095               	movlw	low(095h)
+  1919  0146  00C4               	movwf	(_elapse$1733)
+  1920  0147  3000               	movlw	high(095h)
+  1921  0148  00C5               	movwf	((_elapse$1733))+1
+  1922  0149  294E               	goto	i1l1090
+  1923                           	
+  1924  014A                     i1l1088:	
+  1925                           	
+  1926  014A                     i1l3634:	
+  1927  014A  308D               	movlw	low(08Dh)
+  1928  014B  00C4               	movwf	(_elapse$1733)
+  1929  014C  3000               	movlw	high(08Dh)
+  1930  014D  00C5               	movwf	((_elapse$1733))+1
+  1931                           	
+  1932  014E                     i1l1090:	
+  1933  014E  0844               	movf	(_elapse$1733),w
+  1934  014F  1683               	bsf	status, 5	;RP0=1, select bank1
+  1935  0150  1303               	bcf	status, 6	;RP1=0, select bank1
+  1936  0151  0092               	movwf	(146)^080h	;volatile
+  1937                           	line	235
+  1938                           	
+  1939  0152                     i1l3636:	
+  1940                           ;Ginza.c: 235: CCPR1L=chime_type?71:75;
+  1941  0152  187A               	btfsc	(_chime_type/8),(_chime_type)&7
+  1942  0153  2955               	goto	u317_21
+  1943  0154  2956               	goto	u317_20
+  1944  0155                     u317_21:
+  1945  0155  295D               	goto	i1l3640
+  1946  0156                     u317_20:
+  1947                           	
+  1948  0156                     i1l3638:	
+  1949  0156  304B               	movlw	low(04Bh)
+  1950  0157  1283               	bcf	status, 5	;RP0=0, select bank0
+  1951  0158  1303               	bcf	status, 6	;RP1=0, select bank0
+  1952  0159  00C6               	movwf	(_elapse$1734)
+  1953  015A  3000               	movlw	high(04Bh)
+  1954  015B  00C7               	movwf	((_elapse$1734))+1
+  1955  015C  2962               	goto	i1l1094
+  1956                           	
+  1957  015D                     i1l1092:	
+  1958                           	
+  1959  015D                     i1l3640:	
+  1960  015D  3047               	movlw	low(047h)
+  1961  015E  1283               	bcf	status, 5	;RP0=0, select bank0
+  1962  015F  00C6               	movwf	(_elapse$1734)
+  1963  0160  3000               	movlw	high(047h)
+  1964  0161  00C7               	movwf	((_elapse$1734))+1
+  1965                           	
+  1966  0162                     i1l1094:	
+  1967  0162  0846               	movf	(_elapse$1734),w
+  1968  0163  0095               	movwf	(21)	;volatile
+  1969                           	line	236
+  1970                           ;Ginza.c: 236: }else{
+  1971  0164  2968               	goto	i1l3644
+  1972                           	
+  1973  0165                     i1l1084:	
+  1974                           	line	237
+  1975                           	
+  1976  0165                     i1l3642:	
+  1977                           ;Ginza.c: 237: CCPR1L=0;
+  1978  0165  0195               	clrf	(21)	;volatile
+  1979  0166  2968               	goto	i1l3644
+  1980                           	line	238
+  1981                           	
+  1982  0167                     i1l1095:	
+  1983  0167  2968               	goto	i1l3644
+  1984                           	
+  1985  0168                     i1l1083:	
+  1986                           	line	239
+  1987                           	
+  1988  0168                     i1l3644:	
+  1989                           ;Ginza.c: 238: }
+  1990                           ;Ginza.c: 239: chime_time++;
+  1991  0168  3001               	movlw	low(01h)
+  1992  0169  07B4               	addwf	(_chime_time),f
+  1993  016A  1803               	skipnc
+  1994  016B  0AB5               	incf	(_chime_time+1),f
+  1995  016C  3000               	movlw	high(01h)
+  1996  016D  07B5               	addwf	(_chime_time+1),f
+  1997                           	line	240
+  1998                           ;Ginza.c: 240: }else{
+  1999  016E  2971               	goto	i1l3648
+  2000                           	
+  2001  016F                     i1l1071:	
+  2002                           	line	241
+  2003                           	
+  2004  016F                     i1l3646:	
+  2005                           ;Ginza.c: 241: CCPR1L=0;
+  2006  016F  0195               	clrf	(21)	;volatile
+  2007  0170  2971               	goto	i1l3648
+  2008                           	line	242
+  2009                           	
+  2010  0171                     i1l1096:	
+  2011                           	line	244
+  2012                           	
+  2013  0171                     i1l3648:	
+  2014                           ;Ginza.c: 242: }
+  2015                           ;Ginza.c: 244: key_count++;
+  2016  0171  3001               	movlw	(01h)
+  2017  0172  00F0               	movwf	(??_elapse+0)+0
+  2018  0173  0870               	movf	(??_elapse+0)+0,w
+  2019  0174  07BC               	addwf	(_key_count),f
+  2020                           	line	245
+  2021                           	
+  2022  0175                     i1l3650:	
+  2023                           ;Ginza.c: 245: if(key_count>=2){
+  2024  0175  3002               	movlw	(02h)
+  2025  0176  023C               	subwf	(_key_count),w
+  2026  0177  1C03               	skipc
+  2027  0178  297A               	goto	u318_21
+  2028  0179  297B               	goto	u318_20
+  2029  017A                     u318_21:
+  2030  017A  299E               	goto	i1l1102
+  2031  017B                     u318_20:
+  2032                           	line	246
+  2033                           	
+  2034  017B                     i1l3652:	
+  2035                           ;Ginza.c: 246: key_count=0;
+  2036  017B  01BC               	clrf	(_key_count)
+  2037                           	line	247
+  2038                           	
+  2039  017C                     i1l3654:	
+  2040                           ;Ginza.c: 247: b_0=(~PORTB);
+  2041  017C  0906               	comf	(6),w	;volatile
+  2042  017D  00F0               	movwf	(??_elapse+0)+0
+  2043  017E  0870               	movf	(??_elapse+0)+0,w
+  2044  017F  00B8               	movwf	(_b_0)
+  2045                           	line	248
+  2046                           	
+  2047  0180                     i1l3656:	
+  2048                           ;Ginza.c: 248: if(b_0==b_1){
+  2049  0180  0838               	movf	(_b_0),w
+  2050  0181  0639               	xorwf	(_b_1),w
+  2051  0182  1D03               	skipz
+  2052  0183  2985               	goto	u319_21
+  2053  0184  2986               	goto	u319_20
+  2054  0185                     u319_21:
+  2055  0185  2997               	goto	i1l3664
+  2056  0186                     u319_20:
+  2057                           	line	249
+  2058                           	
+  2059  0186                     i1l3658:	
+  2060                           ;Ginza.c: 249: if(b_1==b_2){
+  2061  0186  0839               	movf	(_b_1),w
+  2062  0187  063A               	xorwf	(_b_2),w
+  2063  0188  1D03               	skipz
+  2064  0189  298B               	goto	u320_21
+  2065  018A  298C               	goto	u320_20
+  2066  018B                     u320_21:
+  2067  018B  2991               	goto	i1l3662
+  2068  018C                     u320_20:
+  2069                           	line	250
+  2070                           	
+  2071  018C                     i1l3660:	
+  2072                           ;Ginza.c: 250: b_cur=b_0;
+  2073  018C  0838               	movf	(_b_0),w
+  2074  018D  00F0               	movwf	(??_elapse+0)+0
+  2075  018E  0870               	movf	(??_elapse+0)+0,w
+  2076  018F  00BB               	movwf	(_b_cur)
+  2077                           	line	251
+  2078                           ;Ginza.c: 251: }else{
+  2079  0190  299E               	goto	i1l1102
+  2080                           	
+  2081  0191                     i1l1099:	
+  2082                           	line	252
+  2083                           	
+  2084  0191                     i1l3662:	
+  2085                           ;Ginza.c: 252: b_2=b_1;
+  2086  0191  0839               	movf	(_b_1),w
+  2087  0192  00F0               	movwf	(??_elapse+0)+0
+  2088  0193  0870               	movf	(??_elapse+0)+0,w
+  2089  0194  00BA               	movwf	(_b_2)
+  2090  0195  299E               	goto	i1l1102
+  2091                           	line	253
+  2092                           	
+  2093  0196                     i1l1100:	
+  2094                           	line	254
+  2095                           ;Ginza.c: 253: }
+  2096                           ;Ginza.c: 254: }else{
+  2097  0196  299E               	goto	i1l1102
+  2098                           	
+  2099  0197                     i1l1098:	
+  2100                           	line	255
+  2101                           	
+  2102  0197                     i1l3664:	
+  2103                           ;Ginza.c: 255: b_1=b_0;
+  2104  0197  0838               	movf	(_b_0),w
+  2105  0198  00F0               	movwf	(??_elapse+0)+0
+  2106  0199  0870               	movf	(??_elapse+0)+0,w
+  2107  019A  00B9               	movwf	(_b_1)
+  2108  019B  299E               	goto	i1l1102
+  2109                           	line	256
+  2110                           	
+  2111  019C                     i1l1101:	
+  2112  019C  299E               	goto	i1l1102
+  2113                           	line	257
+  2114                           	
+  2115  019D                     i1l1097:	
+  2116  019D  299E               	goto	i1l1102
+  2117                           	line	258
+  2118                           	
+  2119  019E                     i1l1067:	
+  2120                           	line	259
+  2121                           	
+  2122  019E                     i1l1102:	
+  2123  019E  0879               	movf	(??_elapse+9),w
+  2124  019F  00FF               	movwf	btemp+1
+  2125  01A0  0878               	movf	(??_elapse+8),w
+  2126  01A1  008A               	movwf	pclath
+  2127  01A2  0877               	movf	(??_elapse+7),w
+  2128  01A3  0084               	movwf	fsr0
+  2129  01A4  0E76               	swapf	(??_elapse+6)^0FFFFFF80h,w
+  2130  01A5  0083               	movwf	status
+  2131  01A6  0EFE               	swapf	saved_w,f
+  2132  01A7  0E7E               	swapf	saved_w,w
+  2133  01A8  0009               	retfie
+  2134                           	opt stack 0
+  2135                           GLOBAL	__end_of_elapse
+  2136  01A9                     	__end_of_elapse:
+  2137 ;; =============== function _elapse ends ============
+  2138                           
+  2139                           	signat	_elapse,88
+  2140                           psect	text126,local,class=CODE,delta=2
+  2141                           global __ptext126
+  2142  0000                     __ptext126:
+  2143                           	global	btemp
+  2144  007E                     	btemp set 07Eh
+  2145                           
+  2146                           	DABS	1,126,2	;btemp
+  2147                           	global	wtemp0
+  2148  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.83 build 10920 
+Symbol Table                                                                                   Sun Nov 16 18:35:40 2014
+
+                  _RD 0C60                    _WR 0C61                    fsr 0004                   _GIE 005F  
+                 _RC0 0038                   _RA5 002D                   _RC3 003B                   _RC4 003C  
+                 _RB6 0036                   _RC5 003D                   _RB7 0037                   _PR2 0092  
+                 _b_0 0038                   _b_1 0039                   _b_2 003A                   fsr0 0004  
+                 indf 0000                  l1020 02C4                  l1021 02AF                  l1030 0264  
+                l1022 0248                  l1023 02C3                  l1031 0289                  l1015 0209  
+                l1024 024B                  l1040 02E3                  l1016 0215                  l1041 02E3  
+                l1033 026F                  l1025 024F                  l1017 021D                  l1042 02F8  
+                l1034 0286                  l1026 0253                  l1018 0228                  l1043 02F9  
+                l1019 02EE                  l1035 028A                  l1027 0261                  l1044 02F9  
+                l1036 02AD                  l1029 025F                  l1038 0295                  l1039 02AA  
+                l3710 01B2                  l3800 0259                  l3720 01C7                  l3712 01C1  
+                l3810 0281                  l3802 0261                  l3730 01CC                  l3722 01C8  
+                l3714 01C4                  l3706 01A9                  l3820 02A7                  l3812 0286  
+                l3804 0264                  l3740 01DD                  l3732 01D0                  l3724 01C9  
+                l3716 01C5                  l3708 01B1                  l3830 02D4                  l3822 02AA  
+                l3814 028A                  l3806 026A                  l3750 01EB                  l3742 01E1  
+                l3734 01D2                  l3726 01CA                  l3718 01C6                  l3832 02E7  
+                l3824 02AE                  l3816 0290                  l3808 026F                  l3760 01F2  
+                l3752 01EC                  l3744 01E2                  l3736 01D6                  l3728 01CB  
+                l3818 0295                  l3826 02AF                  l3834 02EE                  l3770 01FF  
+                l3762 01F3                  l3754 01ED                  l3746 01E6                  l3738 01DC  
+                l3828 02C4                  l3780 020F                  l3772 0200                  l3764 01F4  
+                l3756 01EE                  l3748 01EA                  l3790 0238                  l3782 0218  
+                l3774 0201                  l3766 01FA                  l3758 01F1                  l3792 0248  
+                l3784 021D                  l3776 0208                  l3768 01FE                  l3794 024C  
+                l3786 0227                  l3778 020B                  l3796 0250                  l3788 0228  
+                l3798 0253                  _T0IE 005D                  _T0IF 005A                  u3400 025F  
+                u3401 025E                  u3410 026A                  u3330 0207                  u3411 0269  
+                u3331 0206                  u3500 02A7                  u3420 026E                  u3340 0215  
+                u3501 02A6                  u3421 026D                  u3341 0214                  u3430 0274  
+                u3350 0226                  u3431 0272                  u3351 0225                  u3520 02D4  
+                u3440 027B                  u3432 0275                  u3521 02D3                  u3441 0279  
+                u3514 02CA                  u3450 0281                  u3442 027C                  u3370 0238  
+                u3515 02C8                  u3451 0280                  u3371 0237                  u3540 02ED  
+                u3460 0290                  u3364 022E                  u3541 02EC                  u3461 028F  
+                u3365 022C                  u3534 02DA                  u3470 0294                  u3390 0259  
+                u3535 02D8                  u3471 0293                  u3391 0258                  u3480 029A  
+                u3384 023E                  u3481 0298                  u3385 023C                  u3490 02A1  
+                u3482 029B                  u3491 029F                  _PEIE 005E                  u3492 02A2  
+                u3557 02F2                  _TMR0 0001                  _WREN 0C62                  _WPUB 0095  
+                _ad_0 0020                  _ad_1 0025                  _ad_2 002A                  _b_ok 004E  
+                _main 01A9                  _time 003D                  btemp 007E                  start 0012  
+               ?_main 0070                 _EEADR 010D                 _CARRY 0018                 _ANSEL 0188  
+               _T2CON 0012                 _PORTA 0005                 _PORTB 0006                 _PORTC 0007  
+               _TRISA 0085                 _TRISB 0086                 _TRISC 0087                 _b_cur 003B  
+               main@i 004C        __pbitbssCOMMON 03D0                 pclath 000A                 status 0003  
+               wtemp0 007E          __end_of_main 02FC                ??_main 004A                _ADCON0 001F  
+              _ADCON1 009F                _ADRESH 001E                _EEDATA 010C                _CCPR1L 0015  
+              _EECON1 018C                _EECON2 018D                _ANSELH 0189                i1l1100 0196  
+              i1l1101 019C                i1l1102 019E                i1l1050 003B                i1l1051 004C  
+              i1l1052 00C1                i1l1061 008B                i1l1053 006F                i1l1070 00DB  
+              i1l1071 016F                i1l1063 00B4                i1l1055 006D                i1l1047 00CC  
+              i1l1072 012F                i1l1080 0127                i1l1064 00B8                i1l1056 00B8  
+              i1l1048 0025                i1l1065 00C9                i1l1057 00B6                i1l1090 014E  
+              i1l1082 012C                i1l1074 010B                i1l1066 00CB                i1l1067 019E  
+              i1l1083 0168                i1l1059 0086                i1l1084 0165                i1l1092 015D  
+              i1l1076 0114                i1l1068 00D3                i1l1069 00D2                i1l1094 0162  
+              i1l1086 0141                i1l1078 0118                i1l1095 0167                i1l1096 0171  
+              i1l1088 014A                i1l1097 019D                i1l1098 0197                i1l1099 0191  
+              i1l3600 00BA                i1l3610 00DF                i1l3602 00BC                i1l3620 0114  
+              i1l3612 00F0                i1l3604 00C6                i1l3630 0138                i1l3622 011C  
+              i1l3614 00F9                i1l3606 00D0                i1l3640 015D                i1l3632 0145  
+              i1l3624 0120                i1l3616 0102                i1l3608 00D3                i1l3560 0015  
+              i1l3650 0175                i1l3634 014A                i1l3642 0165                i1l3626 0127  
+              i1l3618 010F                i1l3570 0033                i1l3562 0019                i1l3660 018C  
+              i1l3652 017B                i1l3636 0152                i1l3644 0168                i1l3628 012F  
+              i1l3580 004B                i1l3572 0037                i1l3564 001A                i1l3662 0191  
+              i1l3654 017C                i1l3638 0156                i1l3646 016F                i1l3590 0081  
+              i1l3582 004C                i1l3574 003B                i1l3566 001E                i1l3664 0197  
+              i1l3656 0180                i1l3648 0171                i1l3592 0086                i1l3584 0065  
+              i1l3576 0040                i1l3568 0024                i1l3658 0186                i1l3594 008B  
+              i1l3586 0069                i1l3578 0041                i1l3596 00AC                i1l3588 006F  
+              u300_25 0090                i1l3598 00B0                u301_20 00AC                u301_21 00AB  
+              u310_20 0102                u302_20 00B0                u310_21 0101                u302_21 00AF  
+              u311_20 010B                u303_20 00B4                u311_21 010A                u303_21 00B3  
+              u320_20 018C                u312_20 010F                u304_20 00C1                u320_21 018B  
+              u312_21 010E                u304_21 00C0                u313_20 0120                u305_20 00C6  
+              u313_21 011F                u305_21 00C5                u314_20 0138                u306_20 00D0  
+              u314_21 0137                u306_21 00CF                u315_20 0141                u307_20 00DB  
+              u315_21 0140                u307_21 00DA                u316_20 0145                u308_20 00F0  
+              u316_21 0144                u308_21 00EF                u317_20 0156                u309_20 00F9  
+              u317_21 0155                u309_21 00F8                u318_20 017B                u318_21 017A  
+              u319_20 0186                u319_21 0185                u290_20 0033                u290_21 0032  
+              u291_20 0037                u291_21 0036                u292_20 004A                u292_21 0049  
+              u293_25 0051                u294_20 0065                u286_20 0019                u294_21 0064  
+              u286_21 0018                u295_20 0069                u287_20 0024                u295_21 0068  
+              u287_21 0023                u296_20 006D                u288_20 002B                u296_21 006C  
+              u288_21 0029                u297_20 0074                u297_21 0072                u297_22 0075  
+              u289_24 002C                u298_20 007B                _OSCCON 008F                u298_21 0079  
+              u298_22 007C                u299_20 0081                u299_21 0080                _TMR1IE 0460  
+              _TMR1IF 0060                _TMR1ON 0080                _ad_rtn 002F                _at_sta 03D8  
+              _elapse 0015                _led_on 03D3                clrloop 030D                saved_w 007E  
+      __pcstackCOMMON 0070            __pbssBANK0 0020            _chime_time 0034            _chime_type 03D0  
+          __pmaintext 01A9            __pintentry 0004               ?_elapse 0070               _CCP1CON 0017  
+             _T1CKPS0 0084               _T1CKPS1 0085       __size_of_elapse 0194            _initialize 03D9  
+             _door_on 03D2               elapse@i 0049               _sta_num 0050  end_of_initialization 0308  
+          _timercount 0051            main@i_1725 004D        __end_of_elapse 01A9         __pbitnvCOMMON 03D8  
+ start_initialization 02FC              ??_elapse 0070           __pbssCOMMON 007C         __pcstackBANK0 003E  
+           __pnvBANK0 004E             __ptext125 0015             __ptext126 0000             _direction 03D1  
+         _elapse$1730 003E           _elapse$1731 0040           _elapse$1732 0042           _elapse$1733 0044  
+         _elapse$1734 0046           _elapse$1728 0048             _key_count 003C     interrupt_function 0004  
+           _remainder 007C              _pr2_data 004F         __size_of_main 0153              clear_ram 030C  
+            _quotient 0036              intlevel1 0000            _OPTION_REG 0081  
